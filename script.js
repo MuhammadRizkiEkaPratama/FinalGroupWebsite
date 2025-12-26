@@ -175,7 +175,7 @@ function hookContactForm() { // Basic front-end form validation
 
     if (!ok) return; // Stop if invalid
 
-    note.textContent = "Message validated ✅ (Demo). Connect this to a backend to actually send."; // Success note
+    note.textContent = "Message validated ✅ (Demo)."; // Success note
     form.reset(); // Clear form fields
   }); // End submit handler
 } // End hookContactForm

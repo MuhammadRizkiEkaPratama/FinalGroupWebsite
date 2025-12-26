@@ -1,5 +1,7 @@
 :root {
   /* Theme variables (easy to tweak) */
+  --header-h: 72px;
+  /* Approx sticky header height (used for hero sizing) */
   --bg: #070A12;
   /* Main background (deep navy) */
   --panel: rgba(255, 255, 255, 0.06);
@@ -310,8 +312,16 @@ a {
   /* Hero section */
   position: relative;
   /* For background orbs */
-  padding: 54px 0 26px;
-  /* Vertical spacing */
+  min-height: calc(100svh - var(--header-h));
+  /* Full page (minus sticky header) */
+  min-height: calc(100vh - var(--header-h));
+  /* Fallback */
+  display: flex;
+  /* Allow vertical centering */
+  align-items: center;
+  /* Center content vertically */
+  padding: 24px 0 34px;
+  /* Balanced vertical spacing */
   overflow: hidden;
   /* Hide orbs overflow */
   border-bottom: 1px solid var(--line);
@@ -392,10 +402,10 @@ a {
   /* Grid layout */
   grid-template-columns: 1.1fr 1fr;
   /* Two columns */
-  gap: 26px;
+  gap: 34px;
   /* Spacing */
-  align-items: start;
-  /* Align to top */
+  align-items: center;
+  /* Vertical align (banner feel) */
 }
 
 /* End hero-inner */
@@ -422,7 +432,7 @@ a {
   /* Hero headline */
   margin: 0;
   /* Remove default */
-  font-size: clamp(30px, 4vw, 44px);
+  font-size: clamp(34px, 5vw, 56px);
   /* Responsive size */
   line-height: 1.12;
   /* Tight */
@@ -440,6 +450,8 @@ a {
   /* Muted */
   max-width: 52ch;
   /* Readable width */
+  font-size: 15px;
+  /* Slightly larger for banner */
 }
 
 /* End hero-subtitle */
@@ -478,16 +490,35 @@ a {
 
 .slider {
   /* Slider card */
-  background: var(--panel);
-  /* Glass panel */
-  border: 1px solid var(--line);
-  /* Border */
+  position: relative;
+  /* For HUD effects */
+  overflow: hidden;
+  /* Clip glow */
+  background: rgba(255, 255, 255, 0.02);
+  /* Transparent blend with hero */
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  /* Subtle outline */
   border-radius: var(--radius-lg);
   /* Round */
-  box-shadow: var(--shadow);
-  /* Shadow */
-  padding: 16px;
+  box-shadow: 0 16px 50px rgba(0, 0, 0, 0.35);
+  /* Softer depth (less "card") */
+  padding: 18px;
   /* Padding */
+  backdrop-filter: blur(14px) saturate(130%);
+  /* Glass blend */
+}
+
+.slider::after {
+  /* Subtle scanline/flare overlay */
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(900px 380px at 20% 10%, rgba(99, 255, 230, 0.10), transparent 55%),
+    radial-gradient(680px 320px at 85% 20%, rgba(176, 124, 255, 0.10), transparent 55%),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.06), transparent 22%, transparent 78%, rgba(255, 255, 255, 0.05));
+  opacity: 0.22;
 }
 
 /* End slider */
@@ -516,6 +547,8 @@ a {
   /* Size */
   letter-spacing: 0.2px;
   /* Slight */
+  text-shadow: 0 0 18px rgba(255, 255, 255, 0.06);
+  /* Crisp HUD text */
 }
 
 /* End slider-title */
@@ -538,9 +571,9 @@ a {
   /* Size */
   border-radius: 14px;
   /* Round */
-  border: 1px solid var(--line);
+  border: 1px solid rgba(255, 255, 255, 0.16);
   /* Border */
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(255, 255, 255, 0.06);
   /* Glass */
   color: var(--text);
   /* Text */
@@ -548,7 +581,7 @@ a {
   /* Size */
   cursor: pointer;
   /* Cursor */
-  transition: transform 120ms ease, background 180ms ease;
+  transition: transform 140ms ease, background 180ms ease, box-shadow 180ms ease;
   /* Smooth */
 }
 
@@ -560,6 +593,7 @@ a {
   /* Lift */
   background: rgba(255, 255, 255, 0.08);
   /* Brighter */
+  box-shadow: 0 0 0 1px rgba(176, 124, 255, 0.18), 0 0 24px rgba(176, 124, 255, 0.10);
 }
 
 /* End hover */
@@ -570,8 +604,10 @@ a {
   /* Hide offscreen slides */
   border-radius: var(--radius);
   /* Rounded */
-  border: 1px solid rgba(255, 255, 255, 0.10);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   /* Inner border */
+  background: transparent;
+  /* Blend with banner */
 }
 
 /* End viewport */
@@ -582,8 +618,8 @@ a {
   /* Horizontal */
   transform: translateX(0%);
   /* Default position */
-  transition: transform 420ms ease;
-  /* Slide animation */
+  transition: transform 520ms cubic-bezier(0.22, 1, 0.36, 1);
+  /* Snappy gaming easing */
 }
 
 /* End slides */
@@ -604,56 +640,98 @@ a {
   /* Full width */
   display: grid;
   /* Layout */
-  grid-template-columns: 120px 1fr;
+  grid-template-columns: 190px 1fr;
   /* Avatar + text */
   gap: 14px;
   /* Space */
   align-items: center;
   /* Center */
-  padding: 16px;
+  padding: 18px;
   /* Padding */
   border: 0;
   /* Remove button border */
-  background: rgba(255, 255, 255, 0.03);
-  /* Background */
+  border-radius: calc(var(--radius) - 6px);
+  /* Inner rounding */
+  background: rgba(255, 255, 255, 0.02);
+  /* Transparent (lets hero show through) */
   color: var(--text);
   /* Text */
   cursor: pointer;
   /* Click */
   text-align: left;
   /* Left align */
+  transition: transform 160ms ease, box-shadow 200ms ease, background 200ms ease;
 }
 
 /* End slide-hit */
 
 .slide-hit:hover {
   /* Hover */
-  background: rgba(255, 255, 255, 0.05);
-  /* Slightly brighter */
+  transform: translateY(-2px);
+  background: rgba(255, 255, 255, 0.04);
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.10),
+    0 0 26px rgba(176, 124, 255, 0.10),
+    0 0 22px rgba(99, 255, 230, 0.07);
+}
+
+.slide-hit:focus-visible {
+  outline: none;
+  box-shadow:
+    0 0 0 2px rgba(99, 255, 230, 0.35),
+    0 0 0 1px rgba(255, 255, 255, 0.10),
+    0 0 28px rgba(99, 255, 230, 0.12);
 }
 
 /* End hover */
 
 .avatar {
   /* Large avatar block */
-  width: 120px;
+  width: 190px;
   /* Size */
-  height: 120px;
+  height: 190px;
   /* Size */
-  border-radius: 22px;
+  border-radius: 26px;
   /* Rounded */
   display: grid;
   /* Center */
   place-items: center;
   /* Center */
-  border: 1px solid rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.16);
   /* Border */
-  box-shadow: 0 0 24px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 0 26px rgba(0, 0, 0, 0.35);
   /* Shadow */
   position: relative;
   /* For glow ring */
+  isolation: isolate;
+  /* Clean stacking for image + glows */
   overflow: hidden;
   /* Clip glow */
+}
+
+.avatar-img {
+  /* Profile photo */
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  z-index: 0;
+  filter: saturate(1.05) contrast(1.05);
+  opacity: 0.92;
+}
+
+.avatar::after {
+  /* Gloss highlight */
+  content: "";
+  position: absolute;
+  inset: 1px;
+  border-radius: inherit;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.14), transparent 38%, transparent 70%, rgba(255, 255, 255, 0.06));
+  opacity: 0.55;
+  pointer-events: none;
+  z-index: 3;
 }
 
 /* End avatar */
@@ -670,6 +748,7 @@ a {
   /* Blur glow */
   opacity: 0.7;
   /* Subtle */
+  z-index: 1;
 }
 
 /* End glow */
@@ -702,12 +781,14 @@ a {
   /* Initial text */
   position: relative;
   /* Above glow */
-  font-size: 44px;
+  z-index: 4;
+  font-size: 64px;
   /* Big */
   font-weight: 800;
   /* Bold */
   letter-spacing: -1px;
   /* Tight */
+  text-shadow: 0 0 18px rgba(255, 255, 255, 0.10);
 }
 
 /* End avatar-text */
@@ -788,9 +869,9 @@ a {
 
 .dot {
   /* Dot button */
-  width: 10px;
+  width: 12px;
   /* Size */
-  height: 10px;
+  height: 12px;
   /* Size */
   border-radius: 999px;
   /* Pill dot */
@@ -810,6 +891,7 @@ a {
   /* Bright */
   border-color: rgba(255, 255, 255, 0.40);
   /* Stronger */
+  box-shadow: 0 0 16px rgba(255, 255, 255, 0.12), 0 0 18px rgba(176, 124, 255, 0.10);
 }
 
 /* End active */
@@ -884,7 +966,7 @@ a {
   /* Grid */
   grid-template-columns: repeat(3, 1fr);
   /* 3 columns */
-  gap: 14px;
+  gap: 34px;
   /* Gap */
 }
 
@@ -902,6 +984,8 @@ a {
   /* Padding */
   box-shadow: 0 14px 45px rgba(0, 0, 0, 0.35);
   /* Shadow */
+  overflow: hidden;
+  /* Clip photo rounding */
 }
 
 /* End card */
@@ -916,6 +1000,29 @@ a {
   /* Gap */
   margin-bottom: 10px;
   /* Space */
+}
+
+.card-photo {
+  /* Members card photo block */
+  width: 100%;
+  height: 320px;
+  border-radius: calc(var(--radius) - 4px);
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  background: rgba(255, 255, 255, 0.03);
+  margin-bottom: 12px;
+  position: relative;
+}
+
+.card-photo-img {
+  /* Members card photo */
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  filter: saturate(1.05) contrast(1.05);
+  opacity: 0.95;
 }
 
 /* End card-top */
@@ -1464,6 +1571,26 @@ a {
   /* End nav */
 }
 
+@media (max-width: 520px) {
+  /* Small phones: keep slider readable */
+  .slide-hit {
+    grid-template-columns: 140px 1fr;
+  }
+
+  .avatar {
+    width: 140px;
+    height: 140px;
+  }
+
+  .avatar-text {
+    font-size: 54px;
+  }
+
+  .card-photo {
+    height: 200px;
+  }
+}
+
 /* End media query */
 
 @media (prefers-reduced-motion: reduce) {
@@ -1485,6 +1612,7 @@ a {
   /* End slides */
   .btn,
   .icon-btn,
+  .slide-hit,
   .nav-link {
     /* Interactive elements */
     transition: none;

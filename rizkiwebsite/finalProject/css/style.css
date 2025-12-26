@@ -1,0 +1,1051 @@
+/*
+    File: css/style.css
+    Name: Main Stylesheet
+    Purpose:
+    - Defines the main site layout (Aside + Main Content)
+    - Styles each section (Home/About/Services/Portfolio/Contact)
+    - Uses theme variables (background/text) + skin accent color (`--skin-color` from css/skins/*)
+
+    How it works:
+    - Theme skins: `--skin-color` is supplied by one active skin file (color-1..color-5).
+    - Dark mode: toggling `body.dark` switches the CSS variables below.
+    - Navigation: Aside is fixed; Main Content is padded to avoid overlap.
+
+    Notes:
+    - "Simple mode" hides legacy heavy effects via CSS (preloader/cursor/particles/shapes).
+    - Fonts must remain: Poppins + Clicker Script.
+*/
+
+/* ===== Fonts (Google Fonts) ===== */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Clicker+Script&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+/* ===== Theme Variables (Light) ===== */
+:root
+{
+    --bg-black-900:#f2f2fc;
+    --bg-black-100:#fdf9ff;
+    --bg-black-50:#e8dfec;
+    --text-black-900:#302e4d;
+    --text-black-700:#504e70;
+}
+
+/* ===== Theme Variables (Dark Mode) ===== */
+body.dark
+{
+    --bg-black-900:#151515;
+    --bg-black-100:#222222;
+    --bg-black-50:#393939;
+    --text-black-900:#ffffff;
+    --text-black-700:#e9e9e9;
+}
+
+/* ===== Base / Global ===== */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Name: body (global typography + base colors)
+   Purpose: sets the default font, base sizes, and uses theme variables for colors.
+   Note: body text uses Poppins; accent script uses Clicker Script in specific elements. */
+body
+{
+    line-height: 1.5;
+    font-size: 16px;
+    font-family: 'Poppins', sans-serif;
+    overflow-x: hidden;
+    background: var(--bg-black-900);
+    color: var(--text-black-900);
+}
+
+/* ===== Simple Mode =====
+    Purpose: disable heavy/legacy visual effects to keep performance optimal.
+    How it works: markup stays in HTML, but these elements are hidden here.
+*/
+.preloader,
+.cursor,
+.cursor-follower,
+.animated-shapes,
+#particles-js,
+.scroll-to-top
+{
+    display: none !important;
+}
+
+/* ===== Reset ===== */
+*
+{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    outline: none;
+    text-decoration: none;
+}
+::before,::after
+{
+    box-sizing: border-box;
+}
+/* Name: ul reset
+    Purpose: remove default list bullets (used for nav and list layouts). */
+ul
+{
+    list-style: none;
+}
+/* ===== Layout: Section Wrapper ===== */
+.section
+{
+    background: var(--bg-black-900);
+    min-height: 100vh;
+    display: block;
+    padding: 0 30px;
+    opacity: 1;
+    position: relative;
+}
+.hidden
+{
+    display: none !important;
+}
+/* ===== Layout: Main Content =====
+    Purpose: left padding so content is not covered by the fixed Aside.
+    How it works: matches the Aside width (270px). */
+.main-content
+{
+    padding-left: 270px;
+}
+/* ===== Utility: padding helper ===== */
+.padd-15
+{
+    padding-left: 15px;
+    padding-right: 15px;
+}
+/* ===== Utility: container ===== */
+.container
+{
+    max-width: 1100px;
+    width: 100%;
+    margin: auto;
+}
+.section .container{
+    /*
+       Purpose: consistent vertical spacing per section.
+       How it works: each <section class="section"> contains a .container; we add padding
+       so content doesn't stick to the top/bottom.
+    */
+    padding-top: 60px;
+    padding-bottom: 70px;
+}
+.section-title
+{
+    flex: 0 0 100%;
+    max-width: 100%;
+    margin-bottom: 60px;
+}
+.section-title h2
+{
+    font-size: 40px;
+    color: var(--text-black-900);
+    font-weight: 700;
+    position: relative;
+}
+.section-title h2::before
+{
+    content: '';
+    height: 4px;
+    width: 50px;
+    background-color: var(--skin-color);
+    position: absolute;
+    top: 100%;
+    left: 0;
+}
+
+.section-title h2::after
+{
+    content: '';
+    height: 4px;
+    width: 25px;
+    background-color: var(--skin-color);
+    position: absolute;
+    top: 100%;
+    left: 0;
+    margin-top: 8px;
+}
+/* ===== Layout: row (flex grid) ===== */
+.row
+{
+    display: flex;
+    flex-wrap:wrap;
+    margin-left: -15px;
+    margin-right: -15px;
+    position: relative;
+}
+/* ===== Component: button (.btn) ===== */
+.btn
+{
+    font-size: 16px;
+    font-weight: 500;
+    padding: 12px 35px;
+    color: white;
+    border-radius: 40px;
+    display: inline-block;
+    white-space: nowrap;
+    background: var(--skin-color);
+    transition: all 0.3s ease;
+    border: none;
+}
+.btn:hover
+{
+    transform: scale(1.05);
+}
+
+/*
+    Component: .shadow-dark
+    Purpose: reusable card shadow style (used on timeline, portfolio items, etc.).
+    How it works: a base shadow + stronger shadow on hover.
+*/
+.shadow-dark
+{
+    box-shadow: 0 0 20px rgba(48,46,77,0.15);
+    transition: all 0.3s ease;
+}
+
+.shadow-dark:hover {
+    box-shadow: 0 10px 40px rgba(48,46,77,0.25);
+    transform: translateY(-5px);
+}
+/* ===== Component: Aside (Sidebar Navigation) =====
+   Name: .aside
+   Purpose: fixed sidebar that contains the logo and navigation links.
+   How it works:
+   - `.aside` is fixed on the left.
+   - `.main-content` adds left padding so sections do not overlap the sidebar.
+*/
+.aside
+{
+    width: 270px;
+    background: var(--bg-black-100);
+    position: fixed;
+    left: 0;
+    top: 0;
+    padding: 30px;
+    height: 100%;
+    border-right: 1px solid var(--bg-black-50);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+}
+.aside .logo
+{
+    position: absolute;
+    top: 50px;
+    font-size: 30px;
+    text-transform: capitalize;
+}
+.aside .logo a
+{
+    color: var(--text-black-900);
+    font-weight: 700;
+    padding: 15px 20px;
+    font-size: 30px;
+    letter-spacing: 5px;
+    position: relative;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.aside .logo a:hover {
+    transform: scale(1.05);
+    letter-spacing: 7px;
+}
+
+.aside .logo a span
+{
+    font-family: 'Clicker Script', cursive;
+    font-size: 40px;
+    background: linear-gradient(45deg, var(--skin-color), #ff6b9d);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: glow 2s ease-in-out infinite;
+}
+
+@keyframes glow {
+    0%, 100% {
+        filter: drop-shadow(0 0 5px var(--skin-color));
+    }
+    50% {
+        filter: drop-shadow(0 0 20px var(--skin-color));
+    }
+}
+.aside .logo a::before
+{
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-bottom: 5px solid var(--skin-color);
+    border-left: 5px solid var(--skin-color);
+    bottom: 0;
+    left: 0;
+}
+.aside .logo a::after
+{
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-top: 5px solid var(--skin-color);
+    border-right: 5px solid var(--skin-color);
+    top: 0;
+    right: 0;
+}
+/*
+    Component: .nav-toggler (hamburger)
+    Purpose: reserved for responsive sidebar toggling.
+    Current state: hidden by default (display: none). In a more advanced version,
+    JS could toggle the sidebar; we keep the styles for layout completeness.
+*/
+.aside .nav-toggler
+{
+    height: 40px;
+    width: 45px;
+    border: 1px solid var(--bg-black-50);
+    cursor: pointer;
+    position: fixed;
+    left: 300px;
+    top: 20px;
+    border-radius: 5px;
+    background: var(--bg-black-100);
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+.aside .nav-toggler span
+{
+    height: 2px;
+    width: 18px;
+    background: var(--skin-color);
+    display: inline-block;
+    position: relative;
+}
+.aside .nav-toggler span::before
+{
+    content: '';
+    height: 2px;
+    width: 18px;
+    background: var(--skin-color);
+    position: absolute;
+    top: -6px;
+    left: 0;
+}
+
+.aside .nav-toggler span::after
+{
+    content: '';
+    height: 2px;
+    width: 18px;
+    background: var(--skin-color);
+    position: absolute;
+    top: 6px;
+    left: 0;
+}
+/*
+    Component: Aside Navigation (.aside .nav)
+    HTML mapping: <ul class="nav"> inside <div class="aside">
+    Purpose: vertical menu that links to in-page sections (#home, #about, ...).
+    How it works with JS:
+    - [js/script.js] updates the `.active` class on <a> based on the current hash.
+    How the UI feedback works:
+    - Default: neutral text with a bottom border.
+    - Hover: a skin-colored underline grows from left to right (`::before`) and the
+      link shifts right (padding-left) to feel interactive.
+    - Active: `.active` keeps the link text skin-colored.
+*/
+.aside .nav
+{
+    margin-top: 50px;
+
+}
+.aside .nav li
+{
+    margin-bottom: 20px;
+    display: block;
+}
+/*
+    Aside links (.aside .nav li a)
+    Notes:
+    - `position: relative` + `overflow: hidden` allows the animated underline
+      (`::before`) to stay inside the link box.
+    - The underline starts at width: 0 and expands to 100% on hover.
+*/
+.aside .nav li a
+{
+    font-size: 16px;
+    font-weight: 600;
+    display: block;
+    border-bottom: 1px solid var(--bg-black-50);
+    color: var(--text-black-900);
+    padding: 5px 15px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.aside .nav li a::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0;
+    height: 3px;
+    background: var(--skin-color);
+    transition: width 0.3s ease;
+}
+
+.aside .nav li a:hover::before {
+    width: 100%;
+}
+
+.aside .nav li a:hover {
+    color: var(--skin-color);
+    padding-left: 25px;
+}
+/*
+    Active state
+    `.active` is assigned by JS so the sidebar reflects the currently selected section.
+*/
+.aside .nav .active
+{
+    color: var(--skin-color);
+}
+.aside .nav li a i
+{
+    margin-left: 15px;
+    transition: all 0.3s ease;
+}
+
+.aside .nav li a:hover i {
+    transform: scale(1.2) rotate(10deg);
+}
+/* ===== Section: Home (#home) =====
+    HTML mapping:
+    - <section id="home" class="home section">
+    - Left column:  .home-info
+    - Right column: .home-img
+    Purpose: introduce the owner, short bio, and a call-to-action button.
+*/
+
+.home
+{
+    min-height: 100vh;
+    display: flex;
+    color: var(--text-black-900);
+}
+.home .home-info
+{
+    flex: 0 0 60%;
+    max-width: 60%;
+}
+h3.hello
+{
+    font-size: 28px;
+    margin: 15px 0;
+}
+h3.hello span
+{
+    font-family: 'Clicker Script', cursive;
+    font-size: 30px;
+    font-weight: 700;
+    color: var(--skin-color);    
+}
+h3.my-profession,
+h3.my-prfession
+{
+    font-size: 30px;
+    margin: 15px 0;
+}
+.typing
+{
+    color: var(--skin-color);
+}
+.home-info p
+{
+    margin-bottom: 20px;
+    font-size: 20px;
+    color: var(--text-black-700);
+}
+
+/*
+    Component: Home Social Icons
+    HTML mapping: .home-social contains multiple <a class="social-icon">...
+    Purpose: show social links as circular icon buttons.
+*/
+.home-social {
+    display: flex;
+    gap: 15px;
+    margin: 30px 0;
+    animation: fadeInUp 1s ease 1s both;
+}
+
+.home-social .social-icon {
+    width: 45px;
+    height: 45px;
+    background: var(--bg-black-100);
+    border: 1px solid var(--bg-black-50);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--text-black-700);
+    font-size: 18px;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.home-social .social-icon:hover {
+    background: var(--skin-color);
+    color: #ffffff;
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+.home .home-img
+{
+    flex: 0 0 40%;
+    max-width: 40%;
+    text-align: center;
+    position: relative;
+}
+.home-img::after
+{
+    content: '';
+    position: absolute;
+    height: 80px;
+    width: 80px;
+    border-bottom: 10px solid var(--skin-color);
+    border-right: 10px solid var(--skin-color);
+    right: 20px;
+    bottom: -40px;
+}
+
+.home-img::before
+{
+    content: '';
+    position: absolute;
+    height: 80px;
+    width: 80px;
+    border-top: 10px solid var(--skin-color);
+    border-left: 10px solid var(--skin-color);
+    left: -20px;
+    top: -40px;
+}
+.home .home-img img
+{
+    margin: auto;
+    border-radius: 5px;
+    height: 400px;
+
+}
+/* ===== Section: About (#about) =====
+     HTML mapping:
+     - <section id="about" class="about section">
+     - .about-content contains:
+         - .about-text (intro paragraph)
+         - .personal-info (info grid + buttons)
+         - .skills (progress bars)
+         - .education / .experience (timelines)
+     Purpose: profile details + skills + timeline.
+*/
+.about .about-content
+{
+    flex: 0 0 100%;
+    max-width: 100%;
+}
+.about .about-content .about-text
+{
+    flex: 0 0 100%;
+    max-width: 100%;
+}
+.about .about-content .about-text h3
+{
+    font-size: 24px;
+    margin-bottom: 15px;
+    color: var(--text-black-900);
+    font-weight: 700;
+}
+.about .about-content .about-text h3 span
+{
+    color: var(--skin-color);
+}
+.about .about-content .about-text p
+{
+    font-size: 16px;
+    line-height: 25px;
+    color: var(--text-black-700);
+}
+/*
+    About: Personal Info (.personal-info)
+    HTML mapping: .personal-info contains multiple .info-item rows + a .buttons area.
+    Layout:
+    - Desktop: takes more space (max-width: 60%) beside the skills column.
+    - Mobile: becomes 100% width via responsive rules.
+*/
+.about .about-content .personal-info
+{
+    flex: 0 0  50%;
+    max-width: 60%;
+    margin-top: 40px;
+}
+.about .about-content .personal-info .info-item
+{
+    flex: 0 0 50%;
+    max-width: 50%;
+}
+.about .about-content .personal-info .info-item p
+{
+    font-weight: 600;
+    padding: 10px 0;
+    font-size: 16px;
+    color: var(--text-black-900);
+    border-bottom: 1px solid var(--bg-black-50);
+}
+.about .about-content .personal-info .info-item p span
+{
+    font-weight: 400;
+    color: var(--text-black-700);
+    margin-left: 4px;
+    display: inline-block;
+}
+.about .about-content .personal-info .buttons
+{
+    margin-top: 30px;
+}
+.about .about-content .personal-info .buttons .btn
+{
+    margin-right: 15px;
+    margin-top: 10px;
+}
+/*
+    About: Skills (.skills)
+    HTML mapping:
+    - Each .skill-item contains a label (h5), a .progress bar and a percentage badge.
+    How it works:
+    - `.progress` is the track.
+    - `.progress-in` is the fill element; its width is set inline in HTML (e.g. style="width: 90%").
+    - `.skill-percent` is positioned above-right of the bar.
+*/
+.about .about-content .skills
+{
+    flex: 0 0 40%;
+    max-width: 40%;     
+    margin-top: 40px;
+}
+.about .about-content .skills .skill-item 
+{
+    flex: 0 0 100%;
+    max-width: 100%;
+}
+.about .about-content .skills .skill-item h5{
+    line-height: 40px;
+    font-weight: 600;
+    color: var(--text-black-900);
+    text-transform: capitalize;
+}
+.about .about-content .skills .skill-item .progress
+{
+    background-color: var(--bg-black-50);
+    height: 7px;
+    border-radius: 4px;
+    width: 100%;
+    position: relative;
+}
+.about .about-content .skills .skill-item 
+{
+    margin-bottom: 25px;
+}
+.about .about-content .skills .skill-item .progress .progress-in
+{
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    border-radius: 4px;
+    background-color: var(--skin-color);
+}
+.about .about-content .skills .skill-item .skill-percent
+{
+    position: absolute;
+    right: 0;
+    color: var(--text-black-900);
+    top: -40px;
+    font-weight: 400;
+    line-height: 40px;
+}
+.about .about-content .education,
+.about .about-content .experience
+{
+    flex: 0 0 50%;
+    max-width: 50%;
+    margin-top: 30px;
+}
+.about .about-content h3.title
+{
+    font-size: 24px;
+    margin-bottom: 30px;
+    font-weight: 700;
+    color: var(--text-black-900);
+}
+.about .about-content .timeline-box
+{
+    flex:  0 0 100%;
+    max-width: 100%;
+}
+.about .about-content .timeline
+{
+    background-color: var(--bg-black-100);
+    padding: 30px 15px;
+    border: 1px solid var(--bg-black-50);
+    border-radius: 10px;
+    width: 100%;
+    position: relative;
+}
+/*
+    About: Timeline (Education / Experience)
+    HTML mapping:
+    - `.education` and `.experience` each contain a `.timeline` list.
+    Visual structure:
+    - `.timeline-item::before` draws a vertical line.
+    - `.circle-dot` is the marker for each entry.
+    This is purely visual CSS; content is provided by the HTML.
+*/
+.about .about-content .timeline .timeline-item
+{
+    position: relative;
+    padding-left: 37px;
+    padding-bottom: 50px;
+}
+.about .about-content .timeline .timeline-item:last-child
+{
+    padding-bottom: 0;
+}
+.about .about-content .timeline .timeline-item::before
+{
+    content: '';
+    width: 1px;
+    position: absolute;
+    height: 100%;
+    left: 7px;
+    top: 0;
+    background-color: var(--skin-color);
+}
+.about .about-content .timeline .circle-dot
+{
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 15px;
+    width: 15px;
+    border-radius: 50%;
+    background-color: var(--skin-color);
+}
+.about .about-content .timeline .timeline-date
+{
+    font-weight: 400;
+    font-size: 14px;
+    margin-bottom: 12px;
+    color: var(--text-black-700);
+}
+.about .about-content .timeline .timeline-date .fa
+{
+    margin-bottom: 5px;
+}
+
+.about .about-content .timeline .timeline-title
+{
+    font-weight: 700;
+    font-size: 18px;
+    margin-bottom: 15px;
+    text-transform: capitalize;
+    color: var(--text-black-900);
+}
+.about .about-content .timeline .timeline-text
+{
+    line-height: 25px;
+    font-size: 16px;
+    text-align: justify;
+    color: var(--text-black-700);
+}
+/* ===== Section: Services (#services) =====
+    HTML mapping:
+    - <section id="services" class="service section">
+    - Each card: .service-item > .service-item-inner
+    Purpose: show a grid of service offerings.
+    How it works: 3-column layout on desktop, becomes 2/1 columns via media queries.
+*/
+.service .container
+{
+    padding-bottom: 40px;
+}
+.service .service-item
+{
+    margin-bottom: 30px;
+    flex: 0 0 33.33%;
+    max-width: 33.33%;
+}
+.service .service-item .service-item-inner
+{
+    background-color: var(--bg-black-100);
+    border: 1px solid var(--bg-black-50);
+    border-radius: 10px;
+    padding: 30px 15px;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+.service .service-item .service-item-inner:hover
+{
+    box-shadow: 0 0 20px rgba(48,46,77,0.15);
+    transform: translateY(-10px);
+}
+.service .service-item .service-item-inner .icon
+{
+    height: 60px;
+    width: 60px;
+    border-radius: 50%;
+    display: block;
+    margin: 0 auto 30px;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+.service .service-item .service-item-inner .icon .fa
+{
+    font-size: 40px;
+    line-height: 60px;
+    color: var(--skin-color);
+    transition: all 0.3s ease;
+}
+.service .service-item .service-item-inner:hover .icon
+{
+    background: var(--skin-color);
+}
+.service .service-item .service-item-inner:hover .icon .fa
+{
+    font-size: 25px;
+    color: white;
+}
+.service .service-item .service-item-inner h4
+{
+    font-size: 18px;
+    margin-bottom: 15px;
+    color: var(--text-black-900);
+    font-weight: 700;
+    text-transform: capitalize;
+}
+.service .service-item .service-item-inner p
+{
+    font-size: 16px;
+    color: var(--text-black-700);
+    line-height: 25px;
+}
+/* ===== Section: Portfolio (#portfolio) =====
+    HTML mapping:
+    - <section id="portfolio" class="portfolio section">
+    - Each item: .portfolio-item > .portfolio-item-inner > .portfolio-img
+    Purpose: show recent projects as a grid.
+*/
+.portfolio .container
+{
+    padding-bottom: 40px;
+}
+.portfolio .portfolio-heading
+{
+    flex: 0 0 100%;
+    max-width: 100%;
+    margin-bottom: 40px;
+}
+.portfolio .portfolio-heading h2
+{
+    color: var(--text-black-900);
+    font-weight: 500;
+}
+.portfolio .portfolio-item
+{
+    flex: 0 0 33.33%;
+    max-width: 33.33%;
+    margin-bottom: 30px;
+}
+.portfolio .portfolio-item-inner
+{
+    border: 6px solid var(--bg-black-100);
+    border-radius:10px;
+    overflow: hidden;
+    cursor: pointer;
+}
+.portfolio .portfolio-item-inner .portfolio-img img
+{
+    width: 100%;
+    display: block;
+}
+/* ===== Section: Contact (#contact) =====
+    HTML mapping:
+    - <section id="contact" class="contact section">
+    - Top info cards: .contact-info-item
+    - Form: .contact-form with .form-item and .form-control
+    Purpose: show contact information and a simple message form.
+*/
+.contact-title
+{
+    color: var(--skin-color);
+    text-align: center;
+    font-size: 25px;
+    margin-bottom: 20px;
+}
+.contact-sub-title
+{
+    color: var(--skin-color);
+    text-align: center;
+    font-size: 15px;
+    margin-bottom: 60px;
+}
+.contact .contact-info-item
+{
+    flex: 0 0 25%;
+    max-width: 25%;
+    text-align: center;
+    margin-bottom: 60px;
+}
+.contact .contact-info-item .icon
+{
+    display: inline-block;
+}
+.contact .contact-info-item .icon .fa
+{
+    font-size: 25px;
+    color: var(--skin-color);
+}
+.contact .contact-info-item h4
+{
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text-black-900);
+    text-transform: capitalize;
+    margin: 15px 0 5px;
+}
+.contact .contact-info-item p
+{
+    font-size: 16px;
+    line-height: 25px;
+    color: var(--text-black-700);
+    font-weight: 400;
+}
+.contact .contact-form
+{
+    flex: 0 0 100%;
+    max-width: 100%;   
+}
+.contact .contact-form .col-6
+{
+    flex: 0 0 50%;
+    max-width: 50%;
+}
+.contact .contact-form .col-12
+{
+    flex: 0 0 100%;
+    max-width: 100%;
+}
+.contact .contact-form .form-item
+{
+    margin-bottom: 30px;
+}
+/*
+    Contact form inputs (.form-control)
+    HTML mapping:
+    - Used for <input> and <textarea> inside `.contact-form`.
+    Behavior:
+    - Rounded pill shape via border-radius.
+    - Subtle focus glow via box-shadow (no JS required).
+    - Textarea variant increases height and disables resize to keep layout consistent.
+*/
+.contact .contact-form .form-item .form-control
+{
+    width: 100%;
+    height: 50px;
+    border-radius: 25px;
+    background: var(--bg-black-100);
+    border: 1px solid var(--bg-black-50);
+    padding: 10px 25px;
+    font-size: 16px;
+    color: var(--text-black-700);
+    transition: all 0.3s ease;
+}
+.contact .contact-form .form-item .form-control:focus
+{
+    box-shadow: 0 0 20px rgba(48,46,77,0.15);
+}
+.contact .contact-form .form-item textarea.form-control
+{
+    height: 150px;
+    resize: none;
+}
+.contact .contact-form .form-item .btn
+{
+    height: 50px;
+    padding: 0 50px;
+}
+
+/* ===== Responsive Breakpoints =====
+    Goal: make the layout usable on smaller screens.
+    Breakpoints:
+    - <= 1199px: hide the fixed sidebar off-canvas and remove main-content left padding
+    - <= 991px : reduce grids to 2 columns, hide the home image
+    - <= 767px : stack everything to 1 column
+*/
+@media (max-width: 1199px)
+{
+    .aside
+    {
+        left: -270px;
+    }
+    .main-content
+    {
+        padding-left: 0;
+    }
+    .about .about-content .personal-info .info-item p span
+    {
+        display: block;
+        margin-left: 0;
+    }
+}
+@media (max-width: 991px)
+{
+    .contact .contact-info-item,
+    .portfolio .portfolio-item,
+    .service .service-item
+    {
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
+    .home .home-info
+    {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+    .home .home-img
+    {
+        display: none;
+    }
+}
+@media (max-width: 767px)
+{
+    .contact .contact-form .col-6,
+    .contact .contact-info-item,
+    .portfolio .portfolio-item,
+    .service .service-item,
+    .about .about-content .education,
+    .about .about-content .experience,
+    .about .about-content .skills,
+    .about .about-content .personal-info
+    {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+}
