@@ -1,0 +1,290 @@
+<!DOCTYPE html><!-- Document type for standards mode -->
+<html lang="en"><!-- Root element + language -->
+<head><!-- Metadata container -->
+  <meta charset="UTF-8" /><!-- Character encoding -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" /><!-- Responsive scaling -->
+  <title>Neon Team — Choose Your Character</title><!-- Browser tab title -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"><!-- Performance hint (optional) -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><!-- Performance hint (optional) -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"><!-- Font import -->
+  <link rel="stylesheet" href="styles.css" /><!-- Main stylesheet -->
+</head><!-- End head -->
+<body><!-- Page body -->
+  <a class="skip-link" href="#main"><!-- Accessibility: skip nav for keyboard users -->
+    Skip to content<!-- Visible text -->
+  </a><!-- End skip link -->
+
+  <header class="site-header" id="top"><!-- Sticky header wrapper -->
+    <div class="container header-inner"><!-- Centered layout container -->
+      <a class="brand" href="#top" aria-label="Go to top"><!-- Brand/logo link -->
+        <span class="brand-mark" aria-hidden="true"></span><!-- Decorative neon dot -->
+        <span class="brand-name">NeonTeam</span><!-- Brand name -->
+      </a><!-- End brand -->
+
+      <nav class="nav" aria-label="Primary navigation"><!-- Main nav -->
+        <a class="nav-link" href="#characters">Characters</a><!-- Nav anchor -->
+        <a class="nav-link" href="#members">Members</a><!-- Nav anchor -->
+        <a class="nav-link" href="#team">Team</a><!-- Nav anchor -->
+        <a class="nav-link" href="#contact">Contact</a><!-- Nav anchor -->
+      </nav><!-- End nav -->
+
+      <div class="header-cta"><!-- Right side header actions -->
+        <a class="btn btn-ghost" href="#characters">Meet the squad</a><!-- CTA button -->
+      </div><!-- End header-cta -->
+    </div><!-- End container -->
+  </header><!-- End header -->
+
+  <main id="main"><!-- Main content landmark -->
+
+    <section class="hero" id="characters"><!-- Hero / banner section -->
+      <div class="bg-orbs" aria-hidden="true"><!-- Decorative background layer -->
+        <div class="orb orb-a"></div><!-- Orb A -->
+        <div class="orb orb-b"></div><!-- Orb B -->
+        <div class="orb orb-c"></div><!-- Orb C -->
+      </div><!-- End orbs -->
+
+      <div class="container hero-inner"><!-- Centered content -->
+        <div class="hero-text"><!-- Hero left column -->
+          <p class="kicker">Choose your character</p><!-- Small label -->
+          <h1 class="hero-title">Meet the team in one click.</h1><!-- Main headline -->
+          <p class="hero-subtitle">Pick a member card, jump into their personal portfolio, and explore their work.</p><!-- Supporting text -->
+          <div class="hero-hints"><!-- Quick hints row -->
+            <span class="chip">Neon • Soft glow</span><!-- Hint chip -->
+            <span class="chip">HTML • CSS • JS</span><!-- Hint chip -->
+            <span class="chip">Fast • Clean</span><!-- Hint chip -->
+          </div><!-- End hints -->
+        </div><!-- End hero text -->
+
+        <div class="slider" aria-label="Team character slider"><!-- Slider wrapper -->
+          <div class="slider-topbar"><!-- Slider header row -->
+            <h2 class="slider-title">Select a member</h2><!-- Slider title -->
+            <div class="slider-controls"><!-- Arrow controls -->
+              <button class="icon-btn" type="button" id="prevBtn" aria-label="Previous character"><!-- Prev button -->
+                ‹<!-- Arrow glyph -->
+              </button><!-- End prev button -->
+              <button class="icon-btn" type="button" id="nextBtn" aria-label="Next character"><!-- Next button -->
+                ›<!-- Arrow glyph -->
+              </button><!-- End next button -->
+            </div><!-- End controls -->
+          </div><!-- End topbar -->
+
+          <div class="slider-viewport"><!-- Mask/viewport -->
+            <div class="slides" id="slides"><!-- Track that moves horizontally -->
+
+              <article class="slide" data-link="https://example.com/alex" data-name="Alex" data-role="Front-End Developer"><!-- Slide 1 -->
+                <button class="slide-hit" type="button" aria-label="Open Alex portfolio"><!-- Entire slide clickable -->
+                  <div class="avatar neon-a" aria-hidden="true"><!-- Avatar block -->
+                    <span class="avatar-text">A</span><!-- Initial -->
+                  </div><!-- End avatar -->
+                  <div class="slide-meta"><!-- Text area -->
+                    <h3 class="slide-name">Alex</h3><!-- Name -->
+                    <p class="slide-role">Front-End Developer</p><!-- Role -->
+                    <p class="slide-desc">UI polish, motion, component systems, and clean responsive layouts.</p><!-- Short desc -->
+                    <span class="slide-cta">Enter portfolio →</span><!-- CTA hint -->
+                  </div><!-- End meta -->
+                </button><!-- End slide button -->
+              </article><!-- End slide -->
+
+              <article class="slide" data-link="https://example.com/bella" data-name="Bella" data-role="UI/UX Designer"><!-- Slide 2 -->
+                <button class="slide-hit" type="button" aria-label="Open Bella portfolio"><!-- Entire slide clickable -->
+                  <div class="avatar neon-b" aria-hidden="true"><!-- Avatar block -->
+                    <span class="avatar-text">B</span><!-- Initial -->
+                  </div><!-- End avatar -->
+                  <div class="slide-meta"><!-- Text area -->
+                    <h3 class="slide-name">Bella</h3><!-- Name -->
+                    <p class="slide-role">UI/UX Designer</p><!-- Role -->
+                    <p class="slide-desc">Flow-first design, UX research, wireframes, and high-fidelity systems.</p><!-- Short desc -->
+                    <span class="slide-cta">Enter portfolio →</span><!-- CTA hint -->
+                  </div><!-- End meta -->
+                </button><!-- End slide button -->
+              </article><!-- End slide -->
+
+              <article class="slide" data-link="https://example.com/chen" data-name="Chen" data-role="Back-End Developer"><!-- Slide 3 -->
+                <button class="slide-hit" type="button" aria-label="Open Chen portfolio"><!-- Entire slide clickable -->
+                  <div class="avatar neon-c" aria-hidden="true"><!-- Avatar block -->
+                    <span class="avatar-text">C</span><!-- Initial -->
+                  </div><!-- End avatar -->
+                  <div class="slide-meta"><!-- Text area -->
+                    <h3 class="slide-name">Chen</h3><!-- Name -->
+                    <p class="slide-role">Back-End Developer</p><!-- Role -->
+                    <p class="slide-desc">APIs, security basics, database design, and performance-minded services.</p><!-- Short desc -->
+                    <span class="slide-cta">Enter portfolio →</span><!-- CTA hint -->
+                  </div><!-- End meta -->
+                </button><!-- End slide button -->
+              </article><!-- End slide -->
+
+            </div><!-- End slides -->
+          </div><!-- End viewport -->
+
+          <div class="dots" role="tablist" aria-label="Slider dots"><!-- Dot navigation -->
+            <button class="dot is-active" type="button" data-index="0" role="tab" aria-selected="true" aria-label="Go to Alex"></button><!-- Dot 1 -->
+            <button class="dot" type="button" data-index="1" role="tab" aria-selected="false" aria-label="Go to Bella"></button><!-- Dot 2 -->
+            <button class="dot" type="button" data-index="2" role="tab" aria-selected="false" aria-label="Go to Chen"></button><!-- Dot 3 -->
+          </div><!-- End dots -->
+
+          <p class="slider-note">Tip: Use ← → keys to switch characters. Press Enter to open.</p><!-- Small helper -->
+        </div><!-- End slider -->
+      </div><!-- End container -->
+    </section><!-- End hero -->
+
+    <section class="section" id="members"><!-- Member intro section -->
+      <div class="container"><!-- Centered layout -->
+        <div class="section-head"><!-- Title row -->
+          <h2 class="section-title">Members</h2><!-- Section title -->
+          <p class="section-subtitle">Short intros + direct links to personal portfolios.</p><!-- Section subtitle -->
+        </div><!-- End section head -->
+
+        <div class="grid-3"><!-- 3-column grid -->
+          <article class="card"><!-- Member card -->
+            <div class="card-top"><!-- Card header row -->
+              <div class="mini-avatar neon-a" aria-hidden="true"><span>A</span></div><!-- Small avatar -->
+              <div class="card-title-wrap"><!-- Title wrapper -->
+                <h3 class="card-title">Alex</h3><!-- Name -->
+                <p class="card-role">Front-End Developer</p><!-- Role -->
+              </div><!-- End title wrap -->
+            </div><!-- End card top -->
+            <p class="card-text">Focus: modern UI, clean layout systems, subtle motion, accessibility, and performance.</p><!-- Card text -->
+            <div class="card-actions"><!-- Button row -->
+              <a class="btn btn-primary" href="https://example.com/alex" target="_blank" rel="noopener">Open portfolio</a><!-- Portfolio link -->
+              <a class="btn btn-ghost" href="#contact">Contact</a><!-- Scroll to contact -->
+            </div><!-- End actions -->
+          </article><!-- End member card -->
+
+          <article class="card"><!-- Member card -->
+            <div class="card-top"><!-- Card header row -->
+              <div class="mini-avatar neon-b" aria-hidden="true"><span>B</span></div><!-- Small avatar -->
+              <div class="card-title-wrap"><!-- Title wrapper -->
+                <h3 class="card-title">Bella</h3><!-- Name -->
+                <p class="card-role">UI/UX Designer</p><!-- Role -->
+              </div><!-- End title wrap -->
+            </div><!-- End card top -->
+            <p class="card-text">Focus: wireframes → prototypes → design systems, with user flows that make sense.</p><!-- Card text -->
+            <div class="card-actions"><!-- Button row -->
+              <a class="btn btn-primary" href="https://example.com/bella" target="_blank" rel="noopener">Open portfolio</a><!-- Portfolio link -->
+              <a class="btn btn-ghost" href="#contact">Contact</a><!-- Scroll to contact -->
+            </div><!-- End actions -->
+          </article><!-- End member card -->
+
+          <article class="card"><!-- Member card -->
+            <div class="card-top"><!-- Card header row -->
+              <div class="mini-avatar neon-c" aria-hidden="true"><span>C</span></div><!-- Small avatar -->
+              <div class="card-title-wrap"><!-- Title wrapper -->
+                <h3 class="card-title">Chen</h3><!-- Name -->
+                <p class="card-role">Back-End Developer</p><!-- Role -->
+              </div><!-- End title wrap -->
+            </div><!-- End card top -->
+            <p class="card-text">Focus: API design, auth basics, databases, and reliable systems that scale cleanly.</p><!-- Card text -->
+            <div class="card-actions"><!-- Button row -->
+              <a class="btn btn-primary" href="https://example.com/chen" target="_blank" rel="noopener">Open portfolio</a><!-- Portfolio link -->
+              <a class="btn btn-ghost" href="#contact">Contact</a><!-- Scroll to contact -->
+            </div><!-- End actions -->
+          </article><!-- End member card -->
+        </div><!-- End grid -->
+      </div><!-- End container -->
+    </section><!-- End members -->
+
+    <section class="section section-alt" id="team"><!-- Team brief section -->
+      <div class="container"><!-- Centered layout -->
+        <div class="section-head"><!-- Title row -->
+          <h2 class="section-title">The Team</h2><!-- Section title -->
+          <p class="section-subtitle">A small squad that ships clean work—fast.</p><!-- Section subtitle -->
+        </div><!-- End section head -->
+
+        <div class="team-slab"><!-- Team content slab -->
+          <div class="team-copy"><!-- Text column -->
+            <h3 class="team-title">NeonTeam mindset</h3><!-- Inner headline -->
+            <p class="team-text">We build modern web experiences with a simple stack (HTML/CSS/JS) and a strong focus on clarity, speed, and detail.</p><!-- Paragraph -->
+            <ul class="team-list"><!-- Bullet list -->
+              <li>Design-first structure, then performance.</li><!-- Bullet -->
+              <li>Accessibility and keyboard support by default.</li><!-- Bullet -->
+              <li>Clean code and easy handoff for clients.</li><!-- Bullet -->
+            </ul><!-- End list -->
+          </div><!-- End copy -->
+
+          <div class="team-stats" aria-label="Team highlights"><!-- Stats column -->
+            <div class="stat"><!-- Stat block -->
+              <div class="stat-num">3</div><!-- Stat number -->
+              <div class="stat-label">Specialists</div><!-- Stat label -->
+            </div><!-- End stat -->
+            <div class="stat"><!-- Stat block -->
+              <div class="stat-num">1</div><!-- Stat number -->
+              <div class="stat-label">Landing Page</div><!-- Stat label -->
+            </div><!-- End stat -->
+            <div class="stat"><!-- Stat block -->
+              <div class="stat-num">∞</div><!-- Stat number -->
+              <div class="stat-label">Iterations</div><!-- Stat label -->
+            </div><!-- End stat -->
+          </div><!-- End stats -->
+        </div><!-- End slab -->
+      </div><!-- End container -->
+    </section><!-- End team -->
+
+    <section class="section" id="contact"><!-- Contact section -->
+      <div class="container"><!-- Centered layout -->
+        <div class="section-head"><!-- Title row -->
+          <h2 class="section-title">Contact</h2><!-- Section title -->
+          <p class="section-subtitle">Send a message, ask for a quote, or request a collaboration.</p><!-- Section subtitle -->
+        </div><!-- End section head -->
+
+        <div class="contact-grid"><!-- Two-column layout -->
+          <div class="contact-card"><!-- Contact info card -->
+            <h3 class="contact-title">Project inbox</h3><!-- Contact title -->
+            <p class="contact-text">This demo form validates inputs on the front-end only. Hook it to your backend or a form provider later.</p><!-- Contact text -->
+            <div class="contact-lines"><!-- Info lines -->
+              <p><span class="label">Email:</span> hello@neonteam.dev</p><!-- Email line -->
+              <p><span class="label">Discord:</span> neonteam#0001</p><!-- Discord line -->
+              <p><span class="label">Location:</span> Remote / Worldwide</p><!-- Location line -->
+            </div><!-- End lines -->
+            <div class="social-row"><!-- Social links row -->
+              <a class="social" href="#top" aria-label="Social link placeholder">X</a><!-- Placeholder social -->
+              <a class="social" href="#top" aria-label="Social link placeholder">GH</a><!-- Placeholder social -->
+              <a class="social" href="#top" aria-label="Social link placeholder">IN</a><!-- Placeholder social -->
+            </div><!-- End socials -->
+          </div><!-- End info card -->
+
+          <form class="contact-form" id="contactForm" novalidate><!-- Contact form -->
+            <label class="field"><!-- Field wrapper -->
+              <span class="field-label">Name</span><!-- Label text -->
+              <input class="input" type="text" name="name" id="name" placeholder="Your name" autocomplete="name" required /><!-- Name input -->
+              <small class="error" id="errName" aria-live="polite"></small><!-- Name error -->
+            </label><!-- End field -->
+
+            <label class="field"><!-- Field wrapper -->
+              <span class="field-label">Email</span><!-- Label text -->
+              <input class="input" type="email" name="email" id="email" placeholder="you@email.com" autocomplete="email" required /><!-- Email input -->
+              <small class="error" id="errEmail" aria-live="polite"></small><!-- Email error -->
+            </label><!-- End field -->
+
+            <label class="field"><!-- Field wrapper -->
+              <span class="field-label">Message</span><!-- Label text -->
+              <textarea class="input textarea" name="message" id="message" rows="5" placeholder="Tell us what you need..." required></textarea><!-- Message textarea -->
+              <small class="error" id="errMsg" aria-live="polite"></small><!-- Message error -->
+            </label><!-- End field -->
+
+            <div class="form-actions"><!-- Form buttons row -->
+              <button class="btn btn-primary" type="submit">Send message</button><!-- Submit button -->
+              <button class="btn btn-ghost" type="reset">Reset</button><!-- Reset button -->
+            </div><!-- End actions -->
+
+            <p class="form-note" id="formNote" aria-live="polite"></p><!-- Success note -->
+          </form><!-- End form -->
+        </div><!-- End contact grid -->
+      </div><!-- End container -->
+    </section><!-- End contact -->
+
+  </main><!-- End main -->
+
+  <footer class="footer"><!-- Footer wrapper -->
+    <div class="container footer-inner"><!-- Footer layout -->
+      <p class="footer-left">© <span id="year"></span> NeonTeam. All rights reserved.</p><!-- Copyright -->
+      <div class="footer-right"><!-- Footer links -->
+        <a class="footer-link" href="#characters">Characters</a><!-- Footer anchor -->
+        <a class="footer-link" href="#members">Members</a><!-- Footer anchor -->
+        <a class="footer-link" href="#contact">Contact</a><!-- Footer anchor -->
+      </div><!-- End footer right -->
+    </div><!-- End footer container -->
+  </footer><!-- End footer -->
+
+  <script src="script.js"></script><!-- Main JavaScript -->
+</body><!-- End body -->
+</html><!-- End html -->

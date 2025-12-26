@@ -1,0 +1,1497 @@
+:root {
+  /* Theme variables (easy to tweak) */
+  --bg: #070A12;
+  /* Main background (deep navy) */
+  --panel: rgba(255, 255, 255, 0.06);
+  /* Glass panel background */
+  --panel-strong: rgba(255, 255, 255, 0.10);
+  /* Slightly stronger panel */
+  --text: rgba(255, 255, 255, 0.92);
+  /* Primary text */
+  --muted: rgba(255, 255, 255, 0.68);
+  /* Secondary text */
+  --line: rgba(255, 255, 255, 0.12);
+  /* Hairline borders */
+  --shadow: 0 18px 60px rgba(0, 0, 0, 0.45);
+  /* Soft shadow */
+  --a: #63FFE6;
+  /* Neon A (cyan) */
+  --b: #B07CFF;
+  /* Neon B (purple) */
+  --c: #FF7CC8;
+  /* Neon C (pink) */
+  --radius: 18px;
+  /* Main rounding */
+  --radius-lg: 24px;
+  /* Larger rounding */
+  --max: 1100px;
+  /* Content width */
+}
+
+/* End variables */
+
+* {
+  /* Global reset */
+  box-sizing: border-box;
+  /* Predictable sizing */
+}
+
+/* End reset */
+
+html {
+  /* Root */
+  scroll-behavior: smooth;
+  /* Smooth anchor scroll */
+}
+
+/* End html */
+
+body {
+  /* Body styling */
+  margin: 0;
+  /* Remove default margin */
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  /* Font stack */
+  background: radial-gradient(1200px 800px at 20% 10%, rgba(99, 255, 230, 0.12), transparent 60%),
+    /* Soft cyan glow */
+    radial-gradient(900px 700px at 85% 20%, rgba(176, 124, 255, 0.10), transparent 55%),
+    /* Soft purple glow */
+    radial-gradient(900px 700px at 70% 95%, rgba(255, 124, 200, 0.08), transparent 55%),
+    /* Soft pink glow */
+    var(--bg);
+  /* Base color */
+  color: var(--text);
+  /* Text color */
+  line-height: 1.6;
+  /* Readability */
+}
+
+/* End body */
+
+a {
+  /* Links */
+  color: inherit;
+  /* Keep theme color */
+  text-decoration: none;
+  /* Remove underline */
+}
+
+/* End links */
+
+.container {
+  /* Centered layout container */
+  width: min(var(--max), calc(100% - 40px));
+  /* Max width with side padding */
+  margin: 0 auto;
+  /* Center horizontally */
+}
+
+/* End container */
+
+.skip-link {
+  /* Skip nav (keyboard) */
+  position: absolute;
+  /* Remove from flow */
+  left: -999px;
+  /* Hide offscreen */
+  top: 12px;
+  /* Top offset */
+  padding: 10px 14px;
+  /* Click area */
+  border-radius: 12px;
+  /* Round edges */
+  background: rgba(255, 255, 255, 0.12);
+  /* Background */
+  border: 1px solid var(--line);
+  /* Border */
+  box-shadow: var(--shadow);
+  /* Shadow */
+}
+
+/* End skip-link */
+
+.skip-link:focus {
+  /* When focused */
+  left: 12px;
+  /* Bring into view */
+}
+
+/* End focus */
+
+.site-header {
+  /* Header wrapper */
+  position: sticky;
+  /* Stick to top */
+  top: 0;
+  /* Top edge */
+  z-index: 50;
+  /* Above content */
+  backdrop-filter: blur(14px);
+  /* Glass blur */
+  background: rgba(7, 10, 18, 0.65);
+  /* Semi-transparent */
+  border-bottom: 1px solid var(--line);
+  /* Bottom border */
+}
+
+/* End header */
+
+.header-inner {
+  /* Header layout */
+  display: flex;
+  /* Row layout */
+  align-items: center;
+  /* Vertical center */
+  justify-content: space-between;
+  /* Space between groups */
+  gap: 16px;
+  /* Spacing */
+  padding: 14px 0;
+  /* Vertical padding */
+}
+
+/* End header-inner */
+
+.brand {
+  /* Brand link */
+  display: inline-flex;
+  /* Inline row */
+  align-items: center;
+  /* Center items */
+  gap: 10px;
+  /* Spacing */
+}
+
+/* End brand */
+
+.brand-mark {
+  /* Neon dot */
+  width: 12px;
+  /* Size */
+  height: 12px;
+  /* Size */
+  border-radius: 50%;
+  /* Circle */
+  background: linear-gradient(135deg, var(--a), var(--b));
+  /* Gradient */
+  box-shadow: 0 0 18px rgba(99, 255, 230, 0.35), 0 0 22px rgba(176, 124, 255, 0.25);
+  /* Glow */
+}
+
+/* End brand-mark */
+
+.brand-name {
+  /* Brand text */
+  font-weight: 700;
+  /* Bold */
+  letter-spacing: 0.3px;
+  /* Slight spacing */
+}
+
+/* End brand-name */
+
+.nav {
+  /* Nav row */
+  display: flex;
+  /* Row layout */
+  gap: 18px;
+  /* Spacing */
+}
+
+/* End nav */
+
+.nav-link {
+  /* Nav link */
+  color: var(--muted);
+  /* Muted color */
+  font-weight: 500;
+  /* Medium */
+  padding: 8px 10px;
+  /* Click padding */
+  border-radius: 12px;
+  /* Rounded */
+  transition: background 180ms ease, color 180ms ease;
+  /* Smooth hover */
+}
+
+/* End nav-link */
+
+.nav-link:hover {
+  /* Hover effect */
+  background: rgba(255, 255, 255, 0.07);
+  /* Soft highlight */
+  color: var(--text);
+  /* Brighter text */
+}
+
+/* End hover */
+
+.header-cta {
+  /* Header right side */
+  display: flex;
+  /* Row */
+  gap: 10px;
+  /* Space */
+}
+
+/* End header-cta */
+
+.btn {
+  /* Button base */
+  display: inline-flex;
+  /* Inline row */
+  align-items: center;
+  /* Center */
+  justify-content: center;
+  /* Center */
+  gap: 8px;
+  /* Spacing */
+  padding: 10px 14px;
+  /* Size */
+  border-radius: 14px;
+  /* Rounded */
+  border: 1px solid var(--line);
+  /* Border */
+  background: rgba(255, 255, 255, 0.06);
+  /* Glass */
+  color: var(--text);
+  /* Text */
+  font-weight: 600;
+  /* Weight */
+  cursor: pointer;
+  /* Pointer */
+  transition: transform 120ms ease, background 180ms ease, border-color 180ms ease;
+  /* Smooth */
+}
+
+/* End btn */
+
+.btn:hover {
+  /* Hover lift */
+  transform: translateY(-1px);
+  /* Slight lift */
+  background: rgba(255, 255, 255, 0.09);
+  /* Brighter */
+  border-color: rgba(255, 255, 255, 0.18);
+  /* Stronger border */
+}
+
+/* End hover */
+
+.btn:active {
+  /* Press */
+  transform: translateY(0);
+  /* Reset */
+}
+
+/* End active */
+
+.btn-primary {
+  /* Primary neon button */
+  border-color: rgba(99, 255, 230, 0.28);
+  /* Neon border */
+  background: linear-gradient(135deg, rgba(99, 255, 230, 0.16), rgba(176, 124, 255, 0.12));
+  /* Subtle gradient */
+  box-shadow: 0 0 20px rgba(99, 255, 230, 0.12);
+  /* Glow */
+}
+
+/* End primary */
+
+.btn-ghost {
+  /* Secondary/ghost */
+  background: rgba(255, 255, 255, 0.04);
+  /* Lighter glass */
+}
+
+/* End ghost */
+
+.hero {
+  /* Hero section */
+  position: relative;
+  /* For background orbs */
+  padding: 54px 0 26px;
+  /* Vertical spacing */
+  overflow: hidden;
+  /* Hide orbs overflow */
+  border-bottom: 1px solid var(--line);
+  /* Divider */
+}
+
+/* End hero */
+
+.bg-orbs {
+  /* Orb layer */
+  position: absolute;
+  /* Overlay */
+  inset: 0;
+  /* Fill */
+  pointer-events: none;
+  /* Not clickable */
+}
+
+/* End orbs */
+
+.orb {
+  /* Orb base */
+  position: absolute;
+  /* Position freely */
+  width: 420px;
+  /* Size */
+  height: 420px;
+  /* Size */
+  border-radius: 50%;
+  /* Circle */
+  filter: blur(24px);
+  /* Soft */
+  opacity: 0.55;
+  /* Subtle */
+}
+
+/* End orb */
+
+.orb-a {
+  /* Orb A */
+  left: -120px;
+  /* Left */
+  top: -120px;
+  /* Top */
+  background: radial-gradient(circle at 30% 30%, rgba(99, 255, 230, 0.30), transparent 60%);
+  /* Glow */
+}
+
+/* End orb-a */
+
+.orb-b {
+  /* Orb B */
+  right: -140px;
+  /* Right */
+  top: -80px;
+  /* Top */
+  background: radial-gradient(circle at 30% 30%, rgba(176, 124, 255, 0.26), transparent 60%);
+  /* Glow */
+}
+
+/* End orb-b */
+
+.orb-c {
+  /* Orb C */
+  right: 15%;
+  /* Position */
+  bottom: -220px;
+  /* Bottom */
+  background: radial-gradient(circle at 30% 30%, rgba(255, 124, 200, 0.18), transparent 60%);
+  /* Glow */
+}
+
+/* End orb-c */
+
+.hero-inner {
+  /* Hero layout */
+  display: grid;
+  /* Grid layout */
+  grid-template-columns: 1.1fr 1fr;
+  /* Two columns */
+  gap: 26px;
+  /* Spacing */
+  align-items: start;
+  /* Align to top */
+}
+
+/* End hero-inner */
+
+.kicker {
+  /* Small label */
+  color: var(--muted);
+  /* Muted */
+  margin: 0 0 10px;
+  /* Spacing */
+  font-weight: 600;
+  /* Weight */
+  letter-spacing: 0.5px;
+  /* Spacing */
+  text-transform: uppercase;
+  /* Style */
+  font-size: 12px;
+  /* Size */
+}
+
+/* End kicker */
+
+.hero-title {
+  /* Hero headline */
+  margin: 0;
+  /* Remove default */
+  font-size: clamp(30px, 4vw, 44px);
+  /* Responsive size */
+  line-height: 1.12;
+  /* Tight */
+  letter-spacing: -0.6px;
+  /* Modern */
+}
+
+/* End hero-title */
+
+.hero-subtitle {
+  /* Hero paragraph */
+  margin: 12px 0 16px;
+  /* Spacing */
+  color: var(--muted);
+  /* Muted */
+  max-width: 52ch;
+  /* Readable width */
+}
+
+/* End hero-subtitle */
+
+.hero-hints {
+  /* Chips row */
+  display: flex;
+  /* Row */
+  flex-wrap: wrap;
+  /* Wrap */
+  gap: 10px;
+  /* Spacing */
+}
+
+/* End hints */
+
+.chip {
+  /* Chip style */
+  border: 1px solid var(--line);
+  /* Border */
+  background: rgba(255, 255, 255, 0.04);
+  /* Glass */
+  padding: 7px 10px;
+  /* Size */
+  border-radius: 999px;
+  /* Pill */
+  color: var(--muted);
+  /* Muted text */
+  font-weight: 600;
+  /* Weight */
+  font-size: 12px;
+  /* Size */
+}
+
+/* End chip */
+
+.slider {
+  /* Slider card */
+  background: var(--panel);
+  /* Glass panel */
+  border: 1px solid var(--line);
+  /* Border */
+  border-radius: var(--radius-lg);
+  /* Round */
+  box-shadow: var(--shadow);
+  /* Shadow */
+  padding: 16px;
+  /* Padding */
+}
+
+/* End slider */
+
+.slider-topbar {
+  /* Top row */
+  display: flex;
+  /* Row */
+  align-items: center;
+  /* Center */
+  justify-content: space-between;
+  /* Space */
+  gap: 12px;
+  /* Gap */
+  margin-bottom: 12px;
+  /* Spacing */
+}
+
+/* End topbar */
+
+.slider-title {
+  /* Slider title */
+  margin: 0;
+  /* Reset */
+  font-size: 16px;
+  /* Size */
+  letter-spacing: 0.2px;
+  /* Slight */
+}
+
+/* End slider-title */
+
+.slider-controls {
+  /* Arrow group */
+  display: flex;
+  /* Row */
+  gap: 10px;
+  /* Space */
+}
+
+/* End controls */
+
+.icon-btn {
+  /* Arrow button */
+  width: 40px;
+  /* Size */
+  height: 40px;
+  /* Size */
+  border-radius: 14px;
+  /* Round */
+  border: 1px solid var(--line);
+  /* Border */
+  background: rgba(255, 255, 255, 0.05);
+  /* Glass */
+  color: var(--text);
+  /* Text */
+  font-size: 20px;
+  /* Size */
+  cursor: pointer;
+  /* Cursor */
+  transition: transform 120ms ease, background 180ms ease;
+  /* Smooth */
+}
+
+/* End icon-btn */
+
+.icon-btn:hover {
+  /* Hover */
+  transform: translateY(-1px);
+  /* Lift */
+  background: rgba(255, 255, 255, 0.08);
+  /* Brighter */
+}
+
+/* End hover */
+
+.slider-viewport {
+  /* Mask container */
+  overflow: hidden;
+  /* Hide offscreen slides */
+  border-radius: var(--radius);
+  /* Rounded */
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  /* Inner border */
+}
+
+/* End viewport */
+
+.slides {
+  /* Track */
+  display: flex;
+  /* Horizontal */
+  transform: translateX(0%);
+  /* Default position */
+  transition: transform 420ms ease;
+  /* Slide animation */
+}
+
+/* End slides */
+
+.slide {
+  /* Single slide */
+  flex: 0 0 100%;
+  /* Exactly one viewport wide */
+  padding: 0;
+  /* Reset */
+}
+
+/* End slide */
+
+.slide-hit {
+  /* Full clickable slide */
+  width: 100%;
+  /* Full width */
+  display: grid;
+  /* Layout */
+  grid-template-columns: 120px 1fr;
+  /* Avatar + text */
+  gap: 14px;
+  /* Space */
+  align-items: center;
+  /* Center */
+  padding: 16px;
+  /* Padding */
+  border: 0;
+  /* Remove button border */
+  background: rgba(255, 255, 255, 0.03);
+  /* Background */
+  color: var(--text);
+  /* Text */
+  cursor: pointer;
+  /* Click */
+  text-align: left;
+  /* Left align */
+}
+
+/* End slide-hit */
+
+.slide-hit:hover {
+  /* Hover */
+  background: rgba(255, 255, 255, 0.05);
+  /* Slightly brighter */
+}
+
+/* End hover */
+
+.avatar {
+  /* Large avatar block */
+  width: 120px;
+  /* Size */
+  height: 120px;
+  /* Size */
+  border-radius: 22px;
+  /* Rounded */
+  display: grid;
+  /* Center */
+  place-items: center;
+  /* Center */
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  /* Border */
+  box-shadow: 0 0 24px rgba(0, 0, 0, 0.35);
+  /* Shadow */
+  position: relative;
+  /* For glow ring */
+  overflow: hidden;
+  /* Clip glow */
+}
+
+/* End avatar */
+
+.avatar::before {
+  /* Glow layer */
+  content: "";
+  /* Pseudo element */
+  position: absolute;
+  /* Overlay */
+  inset: -30%;
+  /* Bigger than box */
+  filter: blur(18px);
+  /* Blur glow */
+  opacity: 0.7;
+  /* Subtle */
+}
+
+/* End glow */
+
+.neon-a::before {
+  /* Neon A glow */
+  background: radial-gradient(circle, rgba(99, 255, 230, 0.55), transparent 60%);
+  /* Glow */
+}
+
+/* End neon-a */
+
+.neon-b::before {
+  /* Neon B glow */
+  background: radial-gradient(circle, rgba(176, 124, 255, 0.50), transparent 60%);
+  /* Glow */
+}
+
+/* End neon-b */
+
+.neon-c::before {
+  /* Neon C glow */
+  background: radial-gradient(circle, rgba(255, 124, 200, 0.45), transparent 60%);
+  /* Glow */
+}
+
+/* End neon-c */
+
+.avatar-text {
+  /* Initial text */
+  position: relative;
+  /* Above glow */
+  font-size: 44px;
+  /* Big */
+  font-weight: 800;
+  /* Bold */
+  letter-spacing: -1px;
+  /* Tight */
+}
+
+/* End avatar-text */
+
+.slide-meta {
+  /* Text block */
+  display: flex;
+  /* Column */
+  flex-direction: column;
+  /* Stack */
+  gap: 6px;
+  /* Spacing */
+}
+
+/* End meta */
+
+.slide-name {
+  /* Name */
+  margin: 0;
+  /* Reset */
+  font-size: 18px;
+  /* Size */
+}
+
+/* End name */
+
+.slide-role {
+  /* Role */
+  margin: 0;
+  /* Reset */
+  color: var(--muted);
+  /* Muted */
+  font-weight: 600;
+  /* Weight */
+  font-size: 13px;
+  /* Size */
+}
+
+/* End role */
+
+.slide-desc {
+  /* Description */
+  margin: 0;
+  /* Reset */
+  color: rgba(255, 255, 255, 0.75);
+  /* Softer text */
+  font-size: 13px;
+  /* Size */
+}
+
+/* End desc */
+
+.slide-cta {
+  /* CTA label */
+  margin-top: 2px;
+  /* Space */
+  font-weight: 700;
+  /* Weight */
+  color: rgba(255, 255, 255, 0.88);
+  /* Bright */
+}
+
+/* End cta */
+
+.dots {
+  /* Dots row */
+  display: flex;
+  /* Row */
+  gap: 10px;
+  /* Space */
+  justify-content: center;
+  /* Center */
+  margin: 12px 0 0;
+  /* Spacing */
+}
+
+/* End dots */
+
+.dot {
+  /* Dot button */
+  width: 10px;
+  /* Size */
+  height: 10px;
+  /* Size */
+  border-radius: 999px;
+  /* Pill dot */
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  /* Border */
+  background: rgba(255, 255, 255, 0.10);
+  /* Fill */
+  cursor: pointer;
+  /* Cursor */
+}
+
+/* End dot */
+
+.dot.is-active {
+  /* Active dot */
+  background: rgba(255, 255, 255, 0.75);
+  /* Bright */
+  border-color: rgba(255, 255, 255, 0.40);
+  /* Stronger */
+}
+
+/* End active */
+
+.slider-note {
+  /* Helper text */
+  margin: 10px 0 0;
+  /* Spacing */
+  color: var(--muted);
+  /* Muted */
+  font-size: 12px;
+  /* Size */
+  text-align: center;
+  /* Center */
+}
+
+/* End note */
+
+.section {
+  /* Generic section */
+  padding: 46px 0;
+  /* Vertical spacing */
+}
+
+/* End section */
+
+.section-alt {
+  /* Alternate section background */
+  border-top: 1px solid var(--line);
+  /* Divider */
+  border-bottom: 1px solid var(--line);
+  /* Divider */
+  background: rgba(255, 255, 255, 0.03);
+  /* Slight tint */
+}
+
+/* End section-alt */
+
+.section-head {
+  /* Section header row */
+  margin-bottom: 18px;
+  /* Spacing */
+}
+
+/* End section-head */
+
+.section-title {
+  /* Section title */
+  margin: 0;
+  /* Reset */
+  font-size: 24px;
+  /* Size */
+  letter-spacing: -0.2px;
+  /* Modern */
+}
+
+/* End title */
+
+.section-subtitle {
+  /* Section subtitle */
+  margin: 6px 0 0;
+  /* Spacing */
+  color: var(--muted);
+  /* Muted */
+}
+
+/* End subtitle */
+
+.grid-3 {
+  /* Three column grid */
+  display: grid;
+  /* Grid */
+  grid-template-columns: repeat(3, 1fr);
+  /* 3 columns */
+  gap: 14px;
+  /* Gap */
+}
+
+/* End grid */
+
+.card {
+  /* Card base */
+  background: var(--panel);
+  /* Panel */
+  border: 1px solid var(--line);
+  /* Border */
+  border-radius: var(--radius);
+  /* Rounded */
+  padding: 16px;
+  /* Padding */
+  box-shadow: 0 14px 45px rgba(0, 0, 0, 0.35);
+  /* Shadow */
+}
+
+/* End card */
+
+.card-top {
+  /* Card header row */
+  display: flex;
+  /* Row */
+  align-items: center;
+  /* Center */
+  gap: 12px;
+  /* Gap */
+  margin-bottom: 10px;
+  /* Space */
+}
+
+/* End card-top */
+
+.mini-avatar {
+  /* Small avatar */
+  width: 42px;
+  /* Size */
+  height: 42px;
+  /* Size */
+  border-radius: 14px;
+  /* Rounded */
+  display: grid;
+  /* Center */
+  place-items: center;
+  /* Center */
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  /* Border */
+  background: rgba(255, 255, 255, 0.04);
+  /* Fill */
+  position: relative;
+  /* For glow */
+  overflow: hidden;
+  /* Clip */
+}
+
+/* End mini-avatar */
+
+.mini-avatar::before {
+  /* Glow */
+  content: "";
+  /* Pseudo */
+  position: absolute;
+  /* Overlay */
+  inset: -50%;
+  /* Bigger */
+  filter: blur(18px);
+  /* Blur */
+  opacity: 0.6;
+  /* Opacity */
+}
+
+/* End glow */
+
+.mini-avatar span {
+  /* Initial letter */
+  position: relative;
+  /* Above glow */
+  font-weight: 800;
+  /* Bold */
+}
+
+/* End span */
+
+.card-title {
+  /* Member name */
+  margin: 0;
+  /* Reset */
+  font-size: 16px;
+  /* Size */
+}
+
+/* End title */
+
+.card-role {
+  /* Member role */
+  margin: 0;
+  /* Reset */
+  color: var(--muted);
+  /* Muted */
+  font-weight: 600;
+  /* Weight */
+  font-size: 12px;
+  /* Size */
+}
+
+/* End role */
+
+.card-text {
+  /* Card body text */
+  margin: 10px 0 14px;
+  /* Spacing */
+  color: rgba(255, 255, 255, 0.74);
+  /* Softer */
+}
+
+/* End card-text */
+
+.card-actions {
+  /* Buttons row */
+  display: flex;
+  /* Row */
+  gap: 10px;
+  /* Space */
+  flex-wrap: wrap;
+  /* Wrap on small */
+}
+
+/* End actions */
+
+.team-slab {
+  /* Team slab */
+  display: grid;
+  /* Grid */
+  grid-template-columns: 1.2fr 0.8fr;
+  /* Two columns */
+  gap: 16px;
+  /* Gap */
+  background: var(--panel);
+  /* Panel */
+  border: 1px solid var(--line);
+  /* Border */
+  border-radius: var(--radius-lg);
+  /* Round */
+  padding: 18px;
+  /* Padding */
+  box-shadow: var(--shadow);
+  /* Shadow */
+}
+
+/* End slab */
+
+.team-title {
+  /* Team inner title */
+  margin: 0 0 8px;
+  /* Spacing */
+}
+
+/* End team-title */
+
+.team-text {
+  /* Team paragraph */
+  margin: 0 0 10px;
+  /* Spacing */
+  color: rgba(255, 255, 255, 0.75);
+  /* Softer */
+}
+
+/* End team-text */
+
+.team-list {
+  /* Bullet list */
+  margin: 0;
+  /* Reset */
+  padding-left: 18px;
+  /* Indent */
+  color: rgba(255, 255, 255, 0.78);
+  /* Text */
+}
+
+/* End list */
+
+.team-stats {
+  /* Stats grid */
+  display: grid;
+  /* Grid */
+  grid-template-columns: 1fr;
+  /* Single column */
+  gap: 12px;
+  /* Gap */
+}
+
+/* End stats */
+
+.stat {
+  /* Stat card */
+  background: rgba(255, 255, 255, 0.05);
+  /* Fill */
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  /* Border */
+  border-radius: var(--radius);
+  /* Round */
+  padding: 14px;
+  /* Padding */
+}
+
+/* End stat */
+
+.stat-num {
+  /* Big number */
+  font-size: 26px;
+  /* Size */
+  font-weight: 900;
+  /* Weight */
+  letter-spacing: -0.4px;
+  /* Tight */
+}
+
+/* End stat-num */
+
+.stat-label {
+  /* Label */
+  color: var(--muted);
+  /* Muted */
+  font-weight: 700;
+  /* Weight */
+  font-size: 12px;
+  /* Size */
+  text-transform: uppercase;
+  /* Style */
+  letter-spacing: 0.7px;
+  /* Spacing */
+}
+
+/* End stat-label */
+
+.contact-grid {
+  /* Contact two columns */
+  display: grid;
+  /* Grid */
+  grid-template-columns: 1fr 1fr;
+  /* Two columns */
+  gap: 14px;
+  /* Space */
+}
+
+/* End contact-grid */
+
+.contact-card {
+  /* Left contact card */
+  background: var(--panel);
+  /* Panel */
+  border: 1px solid var(--line);
+  /* Border */
+  border-radius: var(--radius-lg);
+  /* Round */
+  padding: 18px;
+  /* Padding */
+  box-shadow: var(--shadow);
+  /* Shadow */
+}
+
+/* End contact-card */
+
+.contact-title {
+  /* Title */
+  margin: 0 0 8px;
+  /* Spacing */
+}
+
+/* End contact-title */
+
+.contact-text {
+  /* Text */
+  margin: 0 0 14px;
+  /* Spacing */
+  color: rgba(255, 255, 255, 0.75);
+  /* Softer */
+}
+
+/* End contact-text */
+
+.label {
+  /* Inline label */
+  color: rgba(255, 255, 255, 0.88);
+  /* Brighter */
+  font-weight: 700;
+  /* Weight */
+}
+
+/* End label */
+
+.social-row {
+  /* Social links row */
+  display: flex;
+  /* Row */
+  gap: 10px;
+  /* Gap */
+  margin-top: 14px;
+  /* Space */
+}
+
+/* End social-row */
+
+.social {
+  /* Social pill */
+  width: 42px;
+  /* Size */
+  height: 42px;
+  /* Size */
+  border-radius: 14px;
+  /* Round */
+  display: grid;
+  /* Center */
+  place-items: center;
+  /* Center */
+  border: 1px solid var(--line);
+  /* Border */
+  background: rgba(255, 255, 255, 0.05);
+  /* Fill */
+  color: var(--muted);
+  /* Muted */
+  font-weight: 800;
+  /* Bold */
+}
+
+/* End social */
+
+.social:hover {
+  /* Hover */
+  color: var(--text);
+  /* Brighter */
+  background: rgba(255, 255, 255, 0.08);
+  /* Fill */
+}
+
+/* End hover */
+
+.contact-form {
+  /* Form panel */
+  background: var(--panel);
+  /* Panel */
+  border: 1px solid var(--line);
+  /* Border */
+  border-radius: var(--radius-lg);
+  /* Round */
+  padding: 18px;
+  /* Padding */
+  box-shadow: var(--shadow);
+  /* Shadow */
+}
+
+/* End contact-form */
+
+.field {
+  /* Field wrapper */
+  display: block;
+  /* Stack */
+  margin-bottom: 12px;
+  /* Spacing */
+}
+
+/* End field */
+
+.field-label {
+  /* Field label */
+  display: block;
+  /* New line */
+  font-weight: 700;
+  /* Weight */
+  margin-bottom: 6px;
+  /* Space */
+  color: rgba(255, 255, 255, 0.86);
+  /* Brighter */
+  font-size: 12px;
+  /* Size */
+  letter-spacing: 0.5px;
+  /* Spacing */
+  text-transform: uppercase;
+  /* Style */
+}
+
+/* End field-label */
+
+.input {
+  /* Inputs base */
+  width: 100%;
+  /* Full width */
+  padding: 12px 12px;
+  /* Padding */
+  border-radius: 14px;
+  /* Round */
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  /* Border */
+  background: rgba(0, 0, 0, 0.25);
+  /* Dark glass */
+  color: var(--text);
+  /* Text */
+  outline: none;
+  /* Remove default outline */
+}
+
+/* End input */
+
+.input:focus {
+  /* Focus style */
+  border-color: rgba(99, 255, 230, 0.35);
+  /* Neon border */
+  box-shadow: 0 0 0 3px rgba(99, 255, 230, 0.10);
+  /* Soft ring */
+}
+
+/* End focus */
+
+.textarea {
+  /* Textarea tweaks */
+  resize: vertical;
+  /* Allow vertical resize */
+  min-height: 120px;
+  /* Minimum height */
+}
+
+/* End textarea */
+
+.error {
+  /* Error text */
+  display: block;
+  /* New line */
+  min-height: 18px;
+  /* Reserve space */
+  margin-top: 6px;
+  /* Spacing */
+  color: rgba(255, 124, 200, 0.92);
+  /* Pink-ish */
+  font-weight: 600;
+  /* Weight */
+  font-size: 12px;
+  /* Size */
+}
+
+/* End error */
+
+.form-actions {
+  /* Buttons row */
+  display: flex;
+  /* Row */
+  gap: 10px;
+  /* Space */
+  flex-wrap: wrap;
+  /* Wrap */
+  margin-top: 6px;
+  /* Space */
+}
+
+/* End form-actions */
+
+.form-note {
+  /* Form success note */
+  margin: 10px 0 0;
+  /* Spacing */
+  color: var(--muted);
+  /* Muted */
+  font-weight: 600;
+  /* Weight */
+  min-height: 20px;
+  /* Space */
+}
+
+/* End note */
+
+.footer {
+  /* Footer wrapper */
+  border-top: 1px solid var(--line);
+  /* Divider */
+  padding: 20px 0;
+  /* Spacing */
+  background: rgba(7, 10, 18, 0.75);
+  /* Slight tint */
+  backdrop-filter: blur(10px);
+  /* Blur */
+}
+
+/* End footer */
+
+.footer-inner {
+  /* Footer layout */
+  display: flex;
+  /* Row */
+  align-items: center;
+  /* Center */
+  justify-content: space-between;
+  /* Space */
+  gap: 12px;
+  /* Gap */
+}
+
+/* End footer-inner */
+
+.footer-left {
+  /* Footer text */
+  margin: 0;
+  /* Reset */
+  color: var(--muted);
+  /* Muted */
+  font-weight: 600;
+  /* Weight */
+}
+
+/* End footer-left */
+
+.footer-right {
+  /* Footer links row */
+  display: flex;
+  /* Row */
+  gap: 14px;
+  /* Space */
+}
+
+/* End footer-right */
+
+.footer-link {
+  /* Footer link style */
+  color: var(--muted);
+  /* Muted */
+  font-weight: 600;
+  /* Weight */
+}
+
+/* End footer-link */
+
+.footer-link:hover {
+  /* Hover */
+  color: var(--text);
+  /* Bright */
+}
+
+/* End hover */
+
+@media (max-width: 900px) {
+
+  /* Tablet/mobile breakpoint */
+  .hero-inner {
+    /* Adjust hero layout */
+    grid-template-columns: 1fr;
+    /* Single column */
+  }
+
+  /* End hero-inner */
+  .grid-3 {
+    /* Cards grid */
+    grid-template-columns: 1fr;
+    /* Single column */
+  }
+
+  /* End grid-3 */
+  .team-slab {
+    /* Team slab layout */
+    grid-template-columns: 1fr;
+    /* Single column */
+  }
+
+  /* End team-slab */
+  .contact-grid {
+    /* Contact layout */
+    grid-template-columns: 1fr;
+    /* Single column */
+  }
+
+  /* End contact-grid */
+  .nav {
+    /* Hide nav on small screens (simple version) */
+    display: none;
+    /* Hide */
+  }
+
+  /* End nav */
+}
+
+/* End media query */
+
+@media (prefers-reduced-motion: reduce) {
+
+  /* Respect reduced motion */
+  html {
+    /* Root */
+    scroll-behavior: auto;
+    /* No smooth scroll */
+  }
+
+  /* End html */
+  .slides {
+    /* Slider track */
+    transition: none;
+    /* No animation */
+  }
+
+  /* End slides */
+  .btn,
+  .icon-btn,
+  .nav-link {
+    /* Interactive elements */
+    transition: none;
+    /* No animation */
+  }
+
+  /* End transitions */
+}
+
+/* End reduced motion */
