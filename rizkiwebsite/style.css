@@ -38,6 +38,8 @@
 
 html { /* Page root */
   scroll-behavior: smooth; /* Smooth anchor scrolling */
+  scrollbar-width: thin; /* Firefox scrollbar size */
+  scrollbar-color: rgba(var(--accent2-rgb), 0.75) rgba(255, 255, 255, 0.06); /* Thumb / track */
 } /* End html */
 
 body { /* Body styles */
@@ -46,9 +48,26 @@ body { /* Body styles */
   color: var(--text); /* Set text color */
   background: var(--bg); /* Set background */
   overflow-x: hidden; /* Prevent horizontal scroll */
-  scrollbar-width: none; /* Hide scrollbar for Firefox */
-  -ms-overflow-style: none; /* Hide scrollbar for IE and Edge */
 } /* End body */
+
+/* ===== SCROLLBAR (THEMED) ===== */
+::-webkit-scrollbar { /* Chrome/Edge/Safari */
+  width: 12px; /* Scrollbar width */
+} /* End webkit scrollbar */
+
+::-webkit-scrollbar-track { /* Track */
+  background: rgba(255, 255, 255, 0.04); /* Uses existing panel-like tone */
+} /* End track */
+
+::-webkit-scrollbar-thumb { /* Thumb */
+  background: linear-gradient(180deg, rgba(var(--accent-rgb), 0.85), rgba(var(--accent2-rgb), 0.85)); /* Accent gradient */
+  border-radius: 999px; /* Pill */
+  border: 3px solid rgba(255, 255, 255, 0.04); /* Creates spacing from track */
+} /* End thumb */
+
+::-webkit-scrollbar-thumb:hover { /* Thumb hover */
+  background: linear-gradient(180deg, rgba(var(--accent-rgb), 1), rgba(var(--accent2-rgb), 1)); /* Stronger on hover */
+} /* End thumb hover */
 
 /* ===== BACKGROUND LAYERS ===== */
 .bg { /* Background wrapper */
@@ -186,6 +205,8 @@ body { /* Body styles */
   align-items: center; /* Align */
 } /* End links */
 
+.nav
+
 .nav__link { /* Single nav link */
   color: rgba(243, 244, 246, 0.88); /* Link color */
   text-decoration: none; /* No underline */
@@ -212,6 +233,11 @@ body { /* Body styles */
   cursor: pointer; /* Pointer */
   transition: 220ms ease; /* Transition */
 } /* End button */
+
+.nav__btn a { /* Link inside nav button (Return Home) */
+  text-decoration: none; /* Remove underline */
+  color: inherit; /* Match button text color */
+} /* End nav__btn a */
 
 .nav__btn:hover { /* Button hover */
   transform: translateY(-1px); /* Lift */
@@ -840,9 +866,18 @@ body { /* Body styles */
   .hero__right { /* Right section */
     order: 3; /* Place after image */
   } /* End */
+  .about { /* About spacing */
+    padding: 120px 0; /* Reduce huge vertical padding */
+  } /* End about */
   .about__grid { /* About grid */
     grid-template-columns: 1fr; /* Stack */
   } /* End */
+  .portrait__img { /* Portrait height */
+    height: 440px; /* Smaller for tablet */
+  } /* End portrait img */
+  .aboutPortrait__img { /* About portrait height */
+    height: 360px; /* Smaller for tablet */
+  } /* End about portrait img */
   .offer__grid { /* Offer grid */
     grid-template-columns: 1fr; /* Stack */
   } /* End */
@@ -852,7 +887,130 @@ body { /* Body styles */
   .social { /* Social bar */
     display: none; /* Hide on small screens */
   } /* End */
+  .footer__inner { /* Footer layout */
+    flex-direction: column; /* Stack */
+    gap: 10px; /* Space */
+    text-align: center; /* Center text */
+  } /* End footer inner */
 } /* End media */
+
+@media (max-width: 720px) { /* Small tablets / large phones */
+  .nav { /* Nav container */
+    width: min(1200px, calc(100% - 32px)); /* Slightly tighter gutters */
+    flex-wrap: wrap; /* Allow wrap */
+    gap: 12px; /* Reduce spacing */
+  } /* End nav */
+
+  .nav__links { /* Links */
+    width: 100%; /* Full row */
+    justify-content: center; /* Center links */
+    flex-wrap: wrap; /* Wrap if needed */
+    gap: 14px; /* Tighter gap */
+  } /* End links */
+
+  .nav__btn { /* Return home button */
+    margin-left: auto; /* Keep on the right when wrapped */
+  } /* End nav btn */
+
+  .hero { /* Hero spacing */
+    padding: 40px 0 26px; /* Reduce padding */
+  } /* End hero */
+
+  .hero__grid { /* Hero grid */
+    width: min(1200px, calc(100% - 32px)); /* Tighter gutters */
+    gap: 18px; /* Smaller gap */
+  } /* End hero grid */
+
+  .hero__hello { /* Hello text */
+    font-size: 16px; /* Smaller */
+  } /* End hello */
+
+  .hero__role .amp { /* Ampersand spacing */
+    margin: 0 6px; /* Reduce */
+  } /* End amp */
+
+  .carousel { /* Carousel layout */
+    grid-template-columns: 40px 1fr 40px; /* Smaller buttons */
+    gap: 10px; /* Reduce gap */
+  } /* End carousel */
+
+  .carousel__btn { /* Buttons */
+    width: 40px; /* Smaller */
+    height: 40px; /* Smaller */
+  } /* End buttons */
+} /* End 720px */
+
+@media (max-width: 520px) { /* Phones */
+  .nav { /* Nav */
+    flex-direction: column; /* Stack */
+    align-items: stretch; /* Full width items */
+  } /* End nav */
+
+  .brand { /* Brand */
+    justify-content: center; /* Center */
+  } /* End brand */
+
+  .nav__btn { /* Button */
+    width: 100%; /* Full width */
+    justify-content: center; /* Center contents */
+  } /* End button */
+
+  .hero__name { /* Name size */
+    font-size: clamp(36px, 11vw, 48px); /* Slightly smaller on phones */
+  } /* End name */
+
+  .hero__role { /* Role size */
+    font-size: clamp(30px, 10vw, 44px); /* Fit on phones */
+  } /* End role */
+
+  .portrait__img { /* Portrait */
+    height: 360px; /* Reduce height */
+  } /* End portrait img */
+
+  .about { /* About spacing */
+    padding: 96px 0; /* Reduce more for phones */
+  } /* End about */
+
+  .aboutPortrait__img { /* About portrait */
+    height: 300px; /* Reduce height */
+  } /* End about portrait img */
+
+  .about__actions { /* Buttons row */
+    flex-direction: column; /* Stack */
+    align-items: stretch; /* Full width */
+  } /* End actions */
+
+  .pill { /* Primary button */
+    justify-content: center; /* Center */
+  } /* End pill */
+
+  .carousel { /* Carousel */
+    grid-template-columns: 36px 1fr 36px; /* Tighter */
+  } /* End carousel */
+
+  .carousel__btn { /* Buttons */
+    width: 36px; /* Smaller */
+    height: 36px; /* Smaller */
+  } /* End buttons */
+
+  .projectCard { /* Project card width */
+    flex: 0 0 min(84vw, 340px); /* Fit phone width */
+    min-height: 420px; /* Slightly shorter */
+  } /* End projectCard */
+
+  .offerCard { /* Offer cards */
+    padding: 22px; /* Slightly smaller padding */
+    border-radius: 34px; /* Smaller radius */
+  } /* End offerCard */
+
+  .offerCard__title { /* Title */
+    font-size: 28px; /* Downscale */
+  } /* End title */
+
+  .contactBox { /* Contact boxes */
+    padding: 18px; /* Reduce padding */
+  } /* End contactBox */
+} /* End 520px */
 
 @media (prefers-reduced-motion: reduce) { /* Accessibility */
   * { /* Reduce motion */
@@ -861,3 +1019,4 @@ body { /* Body styles */
     scroll-behavior: auto !important; /* Disable smooth scroll */
   } /* End */
 } /* End reduce motion */
+

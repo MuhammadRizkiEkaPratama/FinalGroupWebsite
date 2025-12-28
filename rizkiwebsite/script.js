@@ -7,7 +7,7 @@ const emailValueEl = document.getElementById("emailValue"); // Gets the email te
 const copyBtn = document.getElementById("copyEmailBtn"); // Gets copy button
 const copyText = document.getElementById("copyEmailText"); // Gets copy label text
 
-const resumeBtn = document.getElementById("resumeBtn"); // Gets navbar resume button
+const homeBtn = document.getElementById("homeBtn"); // Gets navbar return-home button
 const aboutResumeBtn = document.getElementById("aboutResumeBtn"); // Gets about resume button
 
 const orb = document.querySelector(".cursor-orb"); // Gets cursor orb element
@@ -209,8 +209,9 @@ function openResume() { // Function to open resume
   window.open("assets/resume.pdf", "_blank", "noopener,noreferrer"); // Opens resume in new tab
 } // Ends openResume
 
-resumeBtn.addEventListener("click", openResume); // Opens resume from navbar
-aboutResumeBtn.addEventListener("click", openResume); // Opens resume from about section
+// Navbar button is used for "Return Home" in HTML (no JS behavior needed).
+// Keep resume open behavior on the About section button only.
+if (aboutResumeBtn) aboutResumeBtn.addEventListener("click", openResume); // Opens resume from about section
 
 document.querySelectorAll("[data-scroll]").forEach((btn) => { // Finds all scroll-to buttons
   btn.addEventListener("click", () => { // Adds click handler
