@@ -1,0 +1,333 @@
+<!-- index.html -->
+<!DOCTYPE html> <!-- Declares the document type as HTML5 -->
+<html lang="en"> <!-- Opens the HTML document and sets language to English -->
+<head> <!-- Starts the head section (metadata & links) -->
+  <meta charset="UTF-8" /> <!-- Sets character encoding to UTF-8 -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" /> <!-- Makes layout responsive on mobile -->
+  <title>Anid - Personal Portfolio</title> <!-- Sets the browser tab title -->
+
+  <link rel="preconnect" href="https://fonts.googleapis.com"> <!-- Speeds up Google Fonts connection -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> <!-- Speeds up font loading with cross-origin -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"> <!-- Loads Inter font -->
+
+  <link rel="stylesheet" href="style.css" /> <!-- Links external CSS -->
+</head> <!-- Ends head section -->
+<body> <!-- Starts body section (visible content) -->
+
+  <div class="bg"> <!-- Background wrapper for blobs and glow -->
+    <div class="blob blob--left"></div> <!-- Left purple blob -->
+    <div class="blob blob--right"></div> <!-- Right purple blob -->
+    <div class="grain"></div> <!-- Grain overlay for premium look -->
+    <div class="cursor-orb" aria-hidden="true"></div> <!-- Floating orb that follows cursor -->
+  </div> <!-- Ends background wrapper -->
+
+  <header class="header" id="top"> <!-- Header section with navbar -->
+    <nav class="nav"> <!-- Navigation container -->
+      <a class="brand" href="#top" aria-label="Go to top"> <!-- Brand/logo link -->
+        <span class="brand__dot"></span> <!-- Small dot accent -->
+        <span class="brand__text">Anid</span> <!-- Brand text -->
+      </a> <!-- Ends brand link -->
+
+      <div class="nav__links"> <!-- Nav links container -->
+        <a class="nav__link" href="#about">About Us</a> <!-- Link to About -->
+        <a class="nav__link" href="#projects">Projects</a> <!-- Link to Projects -->
+        <a class="nav__link" href="#contact">Contact</a> <!-- Link to Contact -->
+      </div> <!-- Ends nav links container -->
+
+      <button class="nav__btn" id="resumeBtn" type="button"> <!-- Resume button -->
+        <span>Resume</span> <!-- Button label -->
+        <span class="nav__btnIcon" aria-hidden="true">▦</span> <!-- Small icon -->
+      </button> <!-- Ends resume button -->
+    </nav> <!-- Ends navigation container -->
+  </header> <!-- Ends header -->
+
+  <aside class="social" aria-label="Social links"> <!-- Left vertical social bar -->
+    <a class="social__icon" href="#" target="_blank" rel="noreferrer" aria-label="LinkedIn">in</a> <!-- LinkedIn -->
+    <a class="social__icon" href="#" target="_blank" rel="noreferrer" aria-label="GitHub">⌁</a> <!-- GitHub -->
+    <a class="social__icon" href="#" target="_blank" rel="noreferrer" aria-label="Dribbble">◎</a> <!-- Dribbble -->
+    <a class="social__icon" href="#" target="_blank" rel="noreferrer" aria-label="Behance">⌂</a> <!-- Behance -->
+  </aside> <!-- Ends social bar -->
+
+  <main class="main"> <!-- Main content wrapper -->
+
+    <section class="hero" aria-label="Hero section"> <!-- Hero/banner section -->
+      <div class="hero__grid"> <!-- Grid layout for hero -->
+
+        <div class="hero__left"> <!-- Left hero text -->
+          <p class="hero__hello">Hello, I'm</p> <!-- Small intro line -->
+          <h1 class="hero__name">Anid<br>Wrooks</h1> <!-- Big name -->
+        </div> <!-- Ends left hero text -->
+
+        <div class="hero__center"> <!-- Center hero image -->
+          <div class="portrait"> <!-- Portrait card -->
+            <img class="portrait__img" src="assets/profile.png" alt="Portrait of Anid" /> <!-- Main profile image -->
+          </div> <!-- Ends portrait card -->
+        </div> <!-- Ends center hero image -->
+
+        <div class="hero__right"> <!-- Right hero text -->
+          <p class="hero__tag">Creative</p> <!-- Small tag text -->
+          <h2 class="hero__role">
+            <span class="accent">Developer</span> <!-- Accent word -->
+            <span class="amp">&</span> <!-- Ampersand -->
+            <span>Designer</span> <!-- Second word -->
+          </h2> <!-- Ends role -->
+        </div> <!-- Ends right hero text -->
+
+      </div> <!-- Ends hero grid -->
+    </section> <!-- Ends hero section -->
+
+    <section class="about" id="about"> <!-- About section -->
+      <div class="container"> <!-- Container to center content -->
+        <div class="about__grid"> <!-- About section grid -->
+
+          <div class="about__left"> <!-- About image area -->
+            <div class="aboutPortrait"> <!-- Secondary portrait -->
+              <img class="aboutPortrait__img" src="assets/profile.png" alt="Anid profile" /> <!-- Reuse profile image -->
+            </div> <!-- Ends about portrait -->
+          </div> <!-- Ends about left -->
+
+          <div class="about__right"> <!-- About text area -->
+            <h3 class="sectionTitle">
+              <span class="accent">Creativity</span> <!-- Accent word -->
+              <span>Is My Passion</span> <!-- Title rest -->
+            </h3> <!-- Ends title -->
+
+            <p class="sectionText">
+              I'm a web <span class="accent">developer and designer</span> passionate about experimenting with
+              new <span class="accent">skills and creativity</span>. Driven by learning and curiosity,
+              I'm always looking to explore and improve my craft.
+            </p> <!-- About paragraph -->
+
+            <div class="about__actions"> <!-- About buttons row -->
+              <button class="pill" id="aboutResumeBtn" type="button"> <!-- Resume pill button -->
+                <span>Resume</span> <!-- Label -->
+                <span class="pill__icon" aria-hidden="true">▦</span> <!-- Icon -->
+              </button> <!-- Ends resume pill -->
+              <a class="ghostLink" href="#projects">View Projects →</a> <!-- Smooth scroll link -->
+            </div> <!-- Ends actions -->
+          </div> <!-- Ends about right -->
+
+        </div> <!-- Ends about grid -->
+      </div> <!-- Ends container -->
+    </section> <!-- Ends about section -->
+
+    <section class="projects" id="projects"> <!-- Projects section -->
+      <div class="container"> <!-- Container -->
+        <div class="sectionHead"> <!-- Section header area -->
+          <h3 class="sectionTitle center">
+            <span>I Make Incredible</span> <!-- Title start -->
+            <span class="accent">Projects</span> <!-- Accent word -->
+          </h3> <!-- Ends title -->
+        </div> <!-- Ends section header -->
+
+        <!-- Projects slider wrapper -->
+        <div class="carousel"> <!-- Main carousel layout (buttons + viewport) -->
+
+          <button class="carousel__btn" id="prevBtn" aria-label="Previous projects" type="button">‹</button> <!-- Prev button -->
+
+          <div class="carousel__viewport" id="viewport" aria-label="Project slider"> <!-- Viewport (hides overflow) -->
+            <div class="carousel__inner" id="track"> <!-- Inner track that moves left/right with transform -->
+
+            <article class="projectCard"> <!-- Project card 1 -->
+              <div class="projectCard__top"> <!-- Card top row -->
+                <div class="projectCard__num">01</div> <!-- Big number -->
+                <div class="projectCard__type">Web</div> <!-- Type -->
+              </div> <!-- Ends top row -->
+              <h4 class="projectCard__title">Barbershop Website</h4> <!-- Project title -->
+              <p class="projectCard__meta">Technologies used</p> <!-- Meta label -->
+              <p class="projectCard__tech">HTML, CSS, JavaScript, GSAP, Swiper JS</p> <!-- Technologies -->
+
+              <div class="projectCard__media"> <!-- Media container -->
+                <img src="assets/project-1.jpg" alt="Project preview 1" /> <!-- Project image -->
+
+                <a class="projectCard__go" href="#" target="_blank" rel="noreferrer" aria-label="Open project"> <!-- Project link -->
+                  <svg class="projectCard__goIcon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                    <path d="M7 17L17 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                    <path d="M10 7h7v7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </a>
+              </div> <!-- Ends media -->
+            </article> <!-- Ends card 1 -->
+
+            <article class="projectCard"> <!-- Project card 2 -->
+              <div class="projectCard__top"> <!-- Card top row -->
+                <div class="projectCard__num">02</div> <!-- Big number -->
+                <div class="projectCard__type">Design</div> <!-- Type -->
+              </div> <!-- Ends top row -->
+              <h4 class="projectCard__title">Ice Cream Shop UI</h4> <!-- Project title -->
+              <p class="projectCard__meta">Technologies used</p> <!-- Meta label -->
+              <p class="projectCard__tech">Figma, UI Kit, Prototyping</p> <!-- Technologies -->
+
+              <div class="projectCard__media"> <!-- Media container -->
+                <img src="assets/project-2.jpg" alt="Project preview 2" /> <!-- Project image -->
+
+                <a class="projectCard__go" href="#" target="_blank" rel="noreferrer" aria-label="Open project"> <!-- Project link -->
+                  <svg class="projectCard__goIcon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                    <path d="M7 17L17 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                    <path d="M10 7h7v7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </a>
+              </div> <!-- Ends media -->
+            </article> <!-- Ends card 2 -->
+
+            <article class="projectCard"> <!-- Project card 3 -->
+              <div class="projectCard__top"> <!-- Card top row -->
+                <div class="projectCard__num">03</div> <!-- Big number -->
+                <div class="projectCard__type">Web</div> <!-- Type -->
+              </div> <!-- Ends top row -->
+              <h4 class="projectCard__title">Fast Food Website</h4> <!-- Project title -->
+              <p class="projectCard__meta">Technologies used</p> <!-- Meta label -->
+              <p class="projectCard__tech">HTML, CSS, JavaScript, Swiper JS</p> <!-- Technologies -->
+
+              <div class="projectCard__media"> <!-- Media container -->
+                <img src="assets/project-3.jpg" alt="Project preview 3" /> <!-- Project image -->
+
+                <a class="projectCard__go" href="#" target="_blank" rel="noreferrer" aria-label="Open project"> <!-- Project link -->
+                  <svg class="projectCard__goIcon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                    <path d="M7 17L17 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                    <path d="M10 7h7v7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </a>
+              </div> <!-- Ends media -->
+            </article> <!-- Ends card 3 -->
+
+            <article class="projectCard"> <!-- Project card 4 -->
+              <div class="projectCard__top"> <!-- Card top row -->
+                <div class="projectCard__num">04</div> <!-- Big number -->
+                <div class="projectCard__type">Design</div> <!-- Type -->
+              </div> <!-- Ends top row -->
+              <h4 class="projectCard__title">Restaurant Web Design</h4> <!-- Project title -->
+              <p class="projectCard__meta">Technologies used</p> <!-- Meta label -->
+              <p class="projectCard__tech">Figma, Design System, Components</p> <!-- Technologies -->
+
+              <div class="projectCard__media"> <!-- Media container -->
+                <img src="assets/project-4.jpg" alt="Project preview 4" /> <!-- Project image -->
+
+                <a class="projectCard__go" href="#" target="_blank" rel="noreferrer" aria-label="Open project"> <!-- Project link -->
+                  <svg class="projectCard__goIcon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                    <path d="M7 17L17 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                    <path d="M10 7h7v7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </a>
+              </div> <!-- Ends media -->
+            </article> <!-- Ends card 4 -->
+
+            </div> <!-- End inner track -->
+          </div> <!-- End viewport -->
+
+          <button class="carousel__btn" id="nextBtn" aria-label="Next projects" type="button">›</button> <!-- Next button -->
+
+        </div> <!-- End carousel -->
+
+        <div class="dots" id="dots" aria-label="Project carousel pagination"> <!-- Dots container -->
+          <!-- Dots will be generated by JS --> <!-- Note -->
+        </div> <!-- Ends dots -->
+      </div> <!-- Ends container -->
+    </section> <!-- Ends projects section -->
+
+    <section class="offer" id="offer"> <!-- Skills/offer section -->
+      <div class="container"> <!-- Container -->
+        <h3 class="sectionTitle center">
+          <span>What I</span> <!-- Title start -->
+          <span class="accent">Offer</span> <!-- Accent word -->
+        </h3> <!-- Ends title -->
+
+        <div class="offer__grid"> <!-- Offer grid -->
+
+          <article class="offerCard"> <!-- Developer card -->
+            <h4 class="offerCard__title">Developer</h4> <!-- Card title -->
+            <p class="offerCard__text">
+              Website creation with HTML, CSS, JavaScript. Professional websites with modern stacks and clean UX.
+            </p> <!-- Card description -->
+
+            <p class="offerCard__label">Skills & Tools</p> <!-- Skills label -->
+            <div class="chips"> <!-- Chips wrapper -->
+              <span class="chip">HTML</span> <!-- Chip -->
+              <span class="chip">CSS</span> <!-- Chip -->
+              <span class="chip">JavaScript</span> <!-- Chip -->
+              <span class="chip">React</span> <!-- Chip -->
+              <span class="chip">TypeScript</span> <!-- Chip -->
+              <span class="chip">Node.js</span> <!-- Chip -->
+              <span class="chip">Next.js</span> <!-- Chip -->
+              <span class="chip">PHP</span> <!-- Chip -->
+              <span class="chip">GitHub</span> <!-- Chip -->
+            </div> <!-- Ends chips -->
+            <button class="miniTop" type="button" data-scroll="#top" aria-label="Back to top">↑</button> <!-- Scroll-to-top -->
+          </article> <!-- Ends developer card -->
+
+          <article class="offerCard offerCard--alt"> <!-- Design card -->
+            <h4 class="offerCard__title">Design</h4> <!-- Card title -->
+            <p class="offerCard__text">
+              Web design, UI systems, motion experiments, and visual polish for premium-looking interfaces.
+            </p> <!-- Card description -->
+
+            <p class="offerCard__label">Skills & Tools</p> <!-- Skills label -->
+            <div class="chips"> <!-- Chips wrapper -->
+              <span class="chip">Figma</span> <!-- Chip -->
+              <span class="chip">Adobe XD</span> <!-- Chip -->
+              <span class="chip">Photoshop</span> <!-- Chip -->
+              <span class="chip">Illustrator</span> <!-- Chip -->
+              <span class="chip">Sketch</span> <!-- Chip -->
+              <span class="chip">3D Modeling</span> <!-- Chip -->
+              <span class="chip">After Effects</span> <!-- Chip -->
+            </div> <!-- Ends chips -->
+            <button class="miniTop" type="button" data-scroll="#top" aria-label="Back to top">↑</button> <!-- Scroll-to-top -->
+          </article> <!-- Ends design card -->
+
+        </div> <!-- Ends offer grid -->
+      </div> <!-- Ends container -->
+    </section> <!-- Ends offer section -->
+
+    <section class="contact" id="contact"> <!-- Contact section -->
+      <div class="container"> <!-- Container -->
+        <h3 class="sectionTitle center">Contact Me</h3> <!-- Contact title -->
+        <p class="sectionText center muted">Tell me about your next project.</p> <!-- Contact subtitle -->
+
+        <div class="contact__cta"> <!-- Copy email area -->
+          <button class="pill" id="copyEmailBtn" type="button"> <!-- Copy button -->
+            <span id="copyEmailText">Copy Email</span> <!-- Button label -->
+            <span class="pill__icon" aria-hidden="true">✓</span> <!-- Icon -->
+          </button> <!-- Ends copy button -->
+        </div> <!-- Ends CTA -->
+
+        <div class="contact__grid"> <!-- Contact columns -->
+
+          <div class="contactBox"> <!-- Left box -->
+            <h4 class="contactBox__title accent">Email</h4> <!-- Email title -->
+            <p class="contactBox__value" id="emailValue">willer123@email.com</p> <!-- Email value -->
+            <h4 class="contactBox__title accent">Location</h4> <!-- Location title -->
+            <p class="contactBox__value">Lima, Peru</p> <!-- Location value -->
+          </div> <!-- Ends left box -->
+
+          <div class="contactBox"> <!-- Middle box -->
+            <h4 class="contactBox__title accent">Social Media</h4> <!-- Social title -->
+            <a class="contactLink" href="#" target="_blank" rel="noreferrer">LinkedIn <span aria-hidden="true">↗</span></a> <!-- LinkedIn -->
+            <a class="contactLink" href="#" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a> <!-- GitHub -->
+            <a class="contactLink" href="#" target="_blank" rel="noreferrer">Dribbble <span aria-hidden="true">↗</span></a> <!-- Dribbble -->
+            <a class="contactLink" href="#" target="_blank" rel="noreferrer">GitLab <span aria-hidden="true">↗</span></a> <!-- GitLab -->
+          </div> <!-- Ends middle box -->
+
+          <div class="contactBox"> <!-- Right box -->
+            <h4 class="contactBox__title accent">Write Me & We'll Talk</h4> <!-- Chat title -->
+            <a class="contactLink" href="#" target="_blank" rel="noreferrer">WhatsApp <span aria-hidden="true">↗</span></a> <!-- WhatsApp -->
+            <a class="contactLink" href="#" target="_blank" rel="noreferrer">Messenger <span aria-hidden="true">↗</span></a> <!-- Messenger -->
+            <a class="contactLink" href="#" target="_blank" rel="noreferrer">Telegram <span aria-hidden="true">↗</span></a> <!-- Telegram -->
+            <a class="contactLink" href="#" target="_blank" rel="noreferrer">Instagram <span aria-hidden="true">↗</span></a> <!-- Instagram -->
+          </div> <!-- Ends right box -->
+
+        </div> <!-- Ends contact grid -->
+      </div> <!-- Ends container -->
+    </section> <!-- Ends contact section -->
+
+  </main> <!-- Ends main wrapper -->
+
+  <footer class="footer"> <!-- Footer section -->
+    <div class="container footer__inner"> <!-- Footer container -->
+      <p class="footer__text">All Rights Reserved By <a class="footer__link" href="#" target="_blank" rel="noreferrer">Bedimcode</a></p> <!-- Credit line -->
+      <p class="footer__text muted">© <span id="year"></span></p> <!-- Dynamic year -->
+    </div> <!-- Ends footer container -->
+  </footer> <!-- Ends footer -->
+
+  <script src="script.js"></script> <!-- Links external JavaScript -->
+</body> <!-- Ends body -->
+</html> <!-- Ends HTML -->
