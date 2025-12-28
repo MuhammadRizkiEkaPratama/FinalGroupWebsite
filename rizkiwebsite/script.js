@@ -13,6 +13,62 @@ const aboutResumeBtn = document.getElementById("aboutResumeBtn"); // Gets about 
 const orb = document.querySelector(".cursor-orb"); // Gets cursor orb element
 
 
+// ===== HERO NAME TYPEWRITER (RIZKI → 李睿祺) =====
+
+const typeNameEl = document.getElementById("typeName"); // Gets the hero name element
+
+const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches; // Checks reduced motion preference
+
+const nameSequence = ["RIZKI EKA", "李睿祺"]; // Defines the text sequence to type
+let nameSeqIndex = 0; // Stores current sequence index
+let nameCharIndex = 0; // Stores current character index
+let nameIsDeleting = false; // Tracks whether we are deleting
+
+const TYPE_SPEED = 90; // Typing speed in ms
+const DELETE_SPEED = 95; // Deleting speed in ms
+const HOLD_TIME = 4000; // Hold time at full word in ms
+
+function tickTypewriter() { // Runs one step of the typewriter
+  if (!typeNameEl) return; // Stops if element does not exist
+  if (prefersReducedMotion) { // If user prefers reduced motion
+    typeNameEl.textContent = nameSequence[0]; // Sets static text
+    return; // Stops animation
+  } // Ends reduced motion
+
+  const fullText = nameSequence[nameSeqIndex]; // Gets the current full word
+
+  if (!nameIsDeleting) { // If we are typing
+    nameCharIndex += 1; // Moves forward one character
+  } else { // If we are deleting
+    nameCharIndex -= 1; // Moves back one character
+  } // Ends typing/deleting branch
+
+  const nextText = fullText.slice(0, nameCharIndex); // Slices text to current length
+  typeNameEl.textContent = nextText; // Applies the text to the DOM
+
+  const isComplete = nextText === fullText; // Checks if typing finished
+  const isEmpty = nextText.length === 0; // Checks if deleting finished
+
+  if (isComplete) { // If we finished typing
+    nameIsDeleting = true; // Switch to deleting
+    setTimeout(tickTypewriter, HOLD_TIME); // Holds then continues
+    return; // Stops this tick
+  } // Ends complete block
+
+  if (isEmpty && nameIsDeleting) { // If we finished deleting
+    nameIsDeleting = false; // Switch to typing
+    nameSeqIndex = (nameSeqIndex + 1) % nameSequence.length; // Moves to next word
+    setTimeout(tickTypewriter, 250); // Small pause before typing
+    return; // Stops this tick
+  } // Ends empty block
+
+  const delay = nameIsDeleting ? DELETE_SPEED : TYPE_SPEED; // Picks speed based on mode
+  setTimeout(tickTypewriter, delay); // Schedules next tick
+} // Ends tickTypewriter
+
+tickTypewriter(); // Starts the typewriter animation
+
+
 // ===== PROJECTS SLIDER (LOOPING + CENTERED) =====
 
 const viewport = document.getElementById("viewport"); // Gets the viewport element

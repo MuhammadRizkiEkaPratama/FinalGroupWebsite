@@ -4,8 +4,8 @@
 <head> <!-- Starts the head section (metadata & links) -->
   <meta charset="UTF-8" /> <!-- Sets character encoding to UTF-8 -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0" /> <!-- Makes layout responsive on mobile -->
-  <title>Anid - Personal Portfolio</title> <!-- Sets the browser tab title -->
-
+  <title>RIZKI - Personal Portfolio</title> <!-- Sets the browser tab title -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"> <!-- Font Awesome for icons -->
   <link rel="preconnect" href="https://fonts.googleapis.com"> <!-- Speeds up Google Fonts connection -->
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> <!-- Speeds up font loading with cross-origin -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"> <!-- Loads Inter font -->
@@ -25,7 +25,7 @@
     <nav class="nav"> <!-- Navigation container -->
       <a class="brand" href="#top" aria-label="Go to top"> <!-- Brand/logo link -->
         <span class="brand__dot"></span> <!-- Small dot accent -->
-        <span class="brand__text">Anid</span> <!-- Brand text -->
+        <span class="brand__text">RIZKI EKA</span> <!-- Brand text -->
       </a> <!-- Ends brand link -->
 
       <div class="nav__links"> <!-- Nav links container -->
@@ -35,17 +35,17 @@
       </div> <!-- Ends nav links container -->
 
       <button class="nav__btn" id="resumeBtn" type="button"> <!-- Resume button -->
-        <span>Resume</span> <!-- Button label -->
-        <span class="nav__btnIcon" aria-hidden="true">▦</span> <!-- Small icon -->
+        <span>Return Home</span> <!-- Button label -->
+        <span class="nav__btnIcon" aria-hidden="true"><i class="fas fa-home"></i></span> <!-- Small icon -->
       </button> <!-- Ends resume button -->
     </nav> <!-- Ends navigation container -->
   </header> <!-- Ends header -->
 
   <aside class="social" aria-label="Social links"> <!-- Left vertical social bar -->
-    <a class="social__icon" href="#" target="_blank" rel="noreferrer" aria-label="LinkedIn">in</a> <!-- LinkedIn -->
-    <a class="social__icon" href="#" target="_blank" rel="noreferrer" aria-label="GitHub">⌁</a> <!-- GitHub -->
-    <a class="social__icon" href="#" target="_blank" rel="noreferrer" aria-label="Dribbble">◎</a> <!-- Dribbble -->
-    <a class="social__icon" href="#" target="_blank" rel="noreferrer" aria-label="Behance">⌂</a> <!-- Behance -->
+    <a class="social__icon" href="#" target="_blank" rel="noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a> <!-- LinkedIn -->
+    <a class="social__icon" href="#" target="_blank" rel="noreferrer" aria-label="GitHub"><i class="fab fa-github"></i></a> <!-- GitHub -->
+    <a class="social__icon" href="#" target="_blank" rel="noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a> 
+    <a class="social__icon" href="#" target="_blank" rel="noreferrer" aria-label="YouTube"><i class="fab fa-youtube"></i></a> <!-- YouTube -->
   </aside> <!-- Ends social bar -->
 
   <main class="main"> <!-- Main content wrapper -->
@@ -55,12 +55,14 @@
 
         <div class="hero__left"> <!-- Left hero text -->
           <p class="hero__hello">Hello, I'm</p> <!-- Small intro line -->
-          <h1 class="hero__name">Anid<br>Wrooks</h1> <!-- Big name -->
+          <h1 class="hero__name"> <!-- Big name -->
+            <span class="typewriter" id="typeName" aria-label="RIZKI EKA">RIZKI EKA</span> <!-- Typewriter name -->
+          </h1> <!-- End big name -->
         </div> <!-- Ends left hero text -->
 
         <div class="hero__center"> <!-- Center hero image -->
           <div class="portrait"> <!-- Portrait card -->
-            <img class="portrait__img" src="assets/profile.png" alt="Portrait of Anid" /> <!-- Main profile image -->
+            <img class="portrait__img" src="assets//Desain tanpa judul (1).png" alt="Portrait of RIZKI" /> <!-- Main profile image -->
           </div> <!-- Ends portrait card -->
         </div> <!-- Ends center hero image -->
 
@@ -82,7 +84,7 @@
 
           <div class="about__left"> <!-- About image area -->
             <div class="aboutPortrait"> <!-- Secondary portrait -->
-              <img class="aboutPortrait__img" src="assets/profile.png" alt="Anid profile" /> <!-- Reuse profile image -->
+              <img class="aboutPortrait__img" src="assets//IMG_20251121_171939_687.jpg" alt="RIZKI profile" /> <!-- Reuse profile image -->
             </div> <!-- Ends about portrait -->
           </div> <!-- Ends about left -->
 
@@ -101,7 +103,7 @@
             <div class="about__actions"> <!-- About buttons row -->
               <button class="pill" id="aboutResumeBtn" type="button"> <!-- Resume pill button -->
                 <span>Resume</span> <!-- Label -->
-                <span class="pill__icon" aria-hidden="true">▦</span> <!-- Icon -->
+                <span class="pill__icon" aria-hidden="true">↗</span> <!-- Icon -->
               </button> <!-- Ends resume pill -->
               <a class="ghostLink" href="#projects">View Projects →</a> <!-- Smooth scroll link -->
             </div> <!-- Ends actions -->
@@ -133,12 +135,12 @@
                 <div class="projectCard__num">01</div> <!-- Big number -->
                 <div class="projectCard__type">Web</div> <!-- Type -->
               </div> <!-- Ends top row -->
-              <h4 class="projectCard__title">Barbershop Website</h4> <!-- Project title -->
+              <h4 class="projectCard__title">Baju Bekas Website</h4> <!-- Project title -->
               <p class="projectCard__meta">Technologies used</p> <!-- Meta label -->
-              <p class="projectCard__tech">HTML, CSS, JavaScript, GSAP, Swiper JS</p> <!-- Technologies -->
+              <p class="projectCard__tech">HTML, CSS, JavaScript, reactjs, PHP, MySQL</p> <!-- Technologies -->
 
               <div class="projectCard__media"> <!-- Media container -->
-                <img src="assets/project-1.jpg" alt="Project preview 1" /> <!-- Project image -->
+                <img src="assets/1.png" alt="Project preview 1" /> <!-- Project image -->
 
                 <a class="projectCard__go" href="#" target="_blank" rel="noreferrer" aria-label="Open project"> <!-- Project link -->
                   <svg class="projectCard__goIcon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
@@ -154,12 +156,12 @@
                 <div class="projectCard__num">02</div> <!-- Big number -->
                 <div class="projectCard__type">Design</div> <!-- Type -->
               </div> <!-- Ends top row -->
-              <h4 class="projectCard__title">Ice Cream Shop UI</h4> <!-- Project title -->
+              <h4 class="projectCard__title">TrashTrack UI/UX</h4> <!-- Project title -->
               <p class="projectCard__meta">Technologies used</p> <!-- Meta label -->
               <p class="projectCard__tech">Figma, UI Kit, Prototyping</p> <!-- Technologies -->
 
               <div class="projectCard__media"> <!-- Media container -->
-                <img src="assets/project-2.jpg" alt="Project preview 2" /> <!-- Project image -->
+                <img src="assets/2.png" alt="Project preview 2" /> <!-- Project image -->
 
                 <a class="projectCard__go" href="#" target="_blank" rel="noreferrer" aria-label="Open project"> <!-- Project link -->
                   <svg class="projectCard__goIcon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
@@ -175,12 +177,12 @@
                 <div class="projectCard__num">03</div> <!-- Big number -->
                 <div class="projectCard__type">Web</div> <!-- Type -->
               </div> <!-- Ends top row -->
-              <h4 class="projectCard__title">Fast Food Website</h4> <!-- Project title -->
+              <h4 class="projectCard__title">Order tickets online</h4> <!-- Project title -->
               <p class="projectCard__meta">Technologies used</p> <!-- Meta label -->
               <p class="projectCard__tech">HTML, CSS, JavaScript, Swiper JS</p> <!-- Technologies -->
 
               <div class="projectCard__media"> <!-- Media container -->
-                <img src="assets/project-3.jpg" alt="Project preview 3" /> <!-- Project image -->
+                <img src="assets/3.png" alt="Project preview 3" /> <!-- Project image -->
 
                 <a class="projectCard__go" href="#" target="_blank" rel="noreferrer" aria-label="Open project"> <!-- Project link -->
                   <svg class="projectCard__goIcon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
@@ -196,12 +198,12 @@
                 <div class="projectCard__num">04</div> <!-- Big number -->
                 <div class="projectCard__type">Design</div> <!-- Type -->
               </div> <!-- Ends top row -->
-              <h4 class="projectCard__title">Restaurant Web Design</h4> <!-- Project title -->
+              <h4 class="projectCard__title">Finance Halal</h4> <!-- Project title -->
               <p class="projectCard__meta">Technologies used</p> <!-- Meta label -->
               <p class="projectCard__tech">Figma, Design System, Components</p> <!-- Technologies -->
 
               <div class="projectCard__media"> <!-- Media container -->
-                <img src="assets/project-4.jpg" alt="Project preview 4" /> <!-- Project image -->
+                <img src="assets/4.png" alt="Project preview 4" /> <!-- Project image -->
 
                 <a class="projectCard__go" href="#" target="_blank" rel="noreferrer" aria-label="Open project"> <!-- Project link -->
                   <svg class="projectCard__goIcon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
@@ -211,6 +213,27 @@
                 </a>
               </div> <!-- Ends media -->
             </article> <!-- Ends card 4 -->
+
+            <article class="projectCard"> <!-- Project card 5 -->
+              <div class="projectCard__top"> <!-- Card top row -->
+                <div class="projectCard__num">05</div> <!-- Big number -->
+                <div class="projectCard__type">websites</div> <!-- Type -->
+              </div> <!-- Ends top row -->
+              <h4 class="projectCard__title">Book Private Jet Website</h4> <!-- Project title -->
+              <p class="projectCard__meta">Technologies used</p> <!-- Meta label -->
+              <p class="projectCard__tech">HTML, CSS, JavaScript, ReactJS, PHP, MySQL</p> <!-- Technologies -->
+
+              <div class="projectCard__media"> <!-- Media container -->
+                <img src="assets/5.png" alt="Project preview 5" /> <!-- Project image -->
+
+                <a class="projectCard__go" href="#" target="_blank" rel="noreferrer" aria-label="Open project"> <!-- Project link -->
+                  <svg class="projectCard__goIcon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                    <path d="M7 17L17 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                    <path d="M10 7h7v7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </a>
+              </div> <!-- Ends media -->
+            </article> <!-- Ends card 5 -->
 
             </div> <!-- End inner track -->
           </div> <!-- End viewport -->
@@ -294,9 +317,15 @@
 
           <div class="contactBox"> <!-- Left box -->
             <h4 class="contactBox__title accent">Email</h4> <!-- Email title -->
-            <p class="contactBox__value" id="emailValue">willer123@email.com</p> <!-- Email value -->
+            <p class="contactBox__value" id="emailValue">riskijambi52@gmail.com</p> <!-- Email value -->
             <h4 class="contactBox__title accent">Location</h4> <!-- Location title -->
-            <p class="contactBox__value">Lima, Peru</p> <!-- Location value -->
+            <p class="contactBox__value">
+              Street:  Gg Becak 24 A, Sumatera Utara<br>
+              City:   Sumatera Utara<br>
+              State/province/area:    Medan<br>
+              Postal/zip code:    20136<br>
+              Country:    Indonesia
+            </p> <!-- Location value -->
           </div> <!-- Ends left box -->
 
           <div class="contactBox"> <!-- Middle box -->
@@ -323,7 +352,7 @@
 
   <footer class="footer"> <!-- Footer section -->
     <div class="container footer__inner"> <!-- Footer container -->
-      <p class="footer__text">All Rights Reserved By <a class="footer__link" href="#" target="_blank" rel="noreferrer">Bedimcode</a></p> <!-- Credit line -->
+      <p class="footer__text">All Rights Reserved By <a class="footer__link" href="#" target="_blank" rel="noreferrer">WebsiteLecture</a></p> <!-- Credit line -->
       <p class="footer__text muted">© <span id="year"></span></p> <!-- Dynamic year -->
     </div> <!-- Ends footer container -->
   </footer> <!-- Ends footer -->
