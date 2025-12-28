@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portofolio</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="mediaQueries.css" />
+    <!-- REMIXICON -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css"
+    />
+  </head>
+  <body>
+    <header class="header">
+      <a href="#home" class="logo">Adib <span>安利华</span></a>
+      <i class="ri-menu-line" id="menu-icon"></i>
+      <nav class="navbar">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#hobby">Hobby</a>
+        <a href="#projects">Project</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <button class="gradient-btn">Contact Me</button>
+    </header>
+
+    <section class="home reveal" id="home">
+      <div class="home-content">
+        <h1>Hi, It's <span>Adib</span></h1>
+        <h3>I am a <span>SE Student</span></h3>
+
+        <div class="social-icon">
+          <a href="#">
+            <i class="ri-linkedin-box-line"></i>
+          </a>
+          <a href="#">
+            <i class="ri-github-line"></i>
+          </a>
+          <a href="#">
+            <i class="ri-tiktok-line"></i>
+          </a>
+          <a href="#">
+            <i class="ri-instagram-line"></i>
+          </a>
+        </div>
+
+        <div class="btn-group">
+          <a href="#" class="btn">Hire</a>
+          <a href="#contact" class="btn">Contact</a>
+        </div>
+      </div>
+      <div class="home-img">
+        <img src="assets/profile.png" alt="" />
+      </div>
+    </section>
+
+    <section class="about" id="about">
+      <div class="about-img">
+        <img src="assets/about.png" alt="Profile Picture" />
+      </div>
+      <div class="about-content">
+        <h2>About <span>Me</span></h2>
+
+        <div class="tab-titles">
+          <p class="tab-links active-link" onclick="opentab('about-tab')">
+            About
+          </p>
+          <p class="tab-links" onclick="opentab('education-tab')">Education</p>
+          <p class="tab-links" onclick="opentab('skills-tab')">Skills</p>
+        </div>
+
+        <!-- About Tab -->
+        <div class="tab-contents active-tab" id="about-tab">
+          <p>
+            Hi! I'm Adib (安利华), a passionate Software Engineering student
+            with a love for creating innovative solutions and building
+            meaningful projects. I specialize in web development and I'm
+            constantly exploring new technologies to expand my skill set.
+          </p>
+          <p>
+            When I'm not coding, you'll find me staying active through running
+            and gym workouts, or exploring new places and cultures through
+            travel. I believe in maintaining a balance between technical
+            excellence and personal growth.
+          </p>
+
+          <div class="stats-container">
+            <div class="stat-box">
+              <span class="stat-number" data-target="4">0</span>
+              <span class="stat-label">Projects</span>
+            </div>
+            <div class="stat-box">
+              <span class="stat-number" data-target="1">0</span>
+              <span class="stat-label">Years Coding</span>
+            </div>
+            <div class="stat-box">
+              <span class="stat-number" data-target="50">0</span>
+              <span class="stat-label">Technologies</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Education Tab -->
+        <div class="tab-contents" id="education-tab">
+          <div class="content-list">
+            <div class="content-item">
+              <i class="ri-graduation-cap-line"></i>
+              <div class="content-info">
+                <h3>Bachelor in Software Engineering</h3>
+                <span>Nanjing Xiaozhuang University | 2025 - present</span>
+                <p>
+                  Currently studying Software Engineering with a focus on
+                  programming fundamentals, algorithms, data structures, and
+                  modern web technologies. Actively developing technical skills
+                  through coursework, hands-on projects, and self-learning while
+                  exploring different areas of software development.
+                </p>
+              </div>
+            </div>
+
+            <div class="content-item">
+              <i class="ri-graduation-cap-line"></i>
+              <div class="content-info">
+                <h3>Bachelor in Informatics</h3>
+                <span>Universitas Islam Indonesia | 2023 - 2025</span>
+                <p>
+                  Studied Informatics with an interest in web development and
+                  software systems. Gained foundational knowledge in programming
+                  and development practices while continuously improving skills
+                  through online learning platforms such as Coursera, Udemy, and
+                  freeCodeCamp.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Skills Tab -->
+        <div class="tab-contents" id="skills-tab">
+          <p>
+            I have experience with a wide range of technologies across the full
+            development stack. Here are some of my core competencies:
+          </p>
+
+          <div class="skills-list">
+            <div class="skill-item">
+              <div class="skill-info">
+                <span>HTML/CSS/JavaScript</span>
+                <span>70%</span>
+              </div>
+              <div class="skill-bar">
+                <div class="skill-progress" style="--progress-width: 70%"></div>
+              </div>
+            </div>
+
+            <div class="skill-item">
+              <div class="skill-info">
+                <span>React & Modern Frameworks</span>
+                <span>45%</span>
+              </div>
+              <div class="skill-bar">
+                <div class="skill-progress" style="--progress-width: 45%"></div>
+              </div>
+            </div>
+
+            <div class="skill-item">
+              <div class="skill-info">
+                <span>Python & Backend Development</span>
+                <span>50%</span>
+              </div>
+              <div class="skill-bar">
+                <div class="skill-progress" style="--progress-width: 50%"></div>
+              </div>
+            </div>
+
+            <div class="skill-item">
+              <div class="skill-info">
+                <span>Database Management (SQL/NoSQL)</span>
+                <span>45%</span>
+              </div>
+              <div class="skill-bar">
+                <div class="skill-progress" style="--progress-width: 45%"></div>
+              </div>
+            </div>
+
+            <div class="skill-item">
+              <div class="skill-info">
+                <span>Git & Version Control</span>
+                <span>55%</span>
+              </div>
+              <div class="skill-bar">
+                <div class="skill-progress" style="--progress-width: 55%"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <a href="#" class="btn">Download CV</a>
+      </div>
+    </section>
+
+    <section class="hobby reveal-right" id="hobby">
+      <h2 class="heading">Hobbies</h2>
+
+      <div class="hobby-container">
+        <div class="hobby-box">
+          <div class="hobby-info">
+            <i class="ri-run-fill"></i>
+            <h4>Running</h4>
+            <p>
+              I enjoy running as a way to stay active and clear my mind. It
+              helps me build discipline, improve endurance, and maintain a
+              healthy routine alongside my academic and personal projects.
+            </p>
+          </div>
+        </div>
+
+        <div class="hobby-box">
+          <div class="hobby-info">
+            <i class="ri-empathize-line"></i>
+            <h4>Gym</h4>
+            <p>
+              Going to the gym is part of my lifestyle to stay consistent and
+              physically strong. Training regularly teaches me discipline,
+              goal-setting, and persistence. Values that also apply to my work
+              and studies.
+            </p>
+          </div>
+        </div>
+
+        <div class="hobby-box">
+          <div class="hobby-info">
+            <i class="ri-pin-distance-line"></i>
+            <h4>Travel</h4>
+            <p>
+              I enjoy traveling and exploring new places, cultures, and
+              environments. It helps broaden my perspective and keeps me
+              curious, open-minded, and adaptable.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="projects reveal" id="projects">
+      <h2 class="heading">Projects</h2>
+
+      <div class="projects-box">
+        <div class="project-card">
+          <img src="assets/project 1.png" alt="" />
+          <h3>TRASHTRECK</h3>
+          <p>
+            Sustainify is a mobile application prototype designed in Figma that
+            focuses on improving waste management through a reward-based system.
+            The app works like a trash pickup service similar to ride hailing
+            apps where users can request trash collection and earn rewards for
+            every contribution they make.
+          </p>
+        </div>
+
+        <div class="project-card">
+          <img src="assets/project 2.png" alt="" />
+          <h3>MECHANALYTICS</h3>
+          <p>
+            Mechanalytics is a desktop application built using Java and Scene
+            Builder that helps monitor and analyze machine conditions in a
+            factory environment. The app provides insights into machine
+            performance, making it easier to detect potential issues, identify
+            when maintenance is needed, and prevent unexpected breakdowns.
+          </p>
+        </div>
+
+        <div class="project-card">
+          <img src="assets/project 3.png" alt="" />
+          <h3>SUSTAINIFY</h3>
+          <p>
+            This Sustainify project is a web platform that collects and
+            organizes information about volunteer opportunities and
+            organizations based on the United Nations Sustainable Development
+            Goals (SDGs). The website helps students discover volunteering
+            opportunities that align with their interests and values, making it
+            easier to get involved in meaningful social and environmental
+            initiatives.
+          </p>
+        </div>
+
+        <div class="project-card">
+          <img src="assets/project4.png" alt="" />
+          <h3>SENTRA</h3>
+          <p>
+            Sentra is a Management Information System (MIS) web application
+            designed for university leaders such as rectors, deans, or campus
+            management. The system monitors lecturer performance based on
+            student feedback and integrates an LLM-powered feature to
+            automatically generate performance summaries.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact reveal-left" id="contact">
+      <h2 class="heading">Contact <span>Me</span></h2>
+
+      <form action="#">
+        <div class="input-group">
+          <div class="input-box">
+            <input type="text" placeholder="Full Name" />
+            <input type="email" placeholder="Email" />
+          </div>
+
+          <div class="input-box">
+            <input type="number" placeholder="Phone Number" />
+            <input type="text" placeholder="Subject" />
+          </div>
+        </div>
+
+        <div class="input-group2">
+          <textarea
+            name=""
+            id=""
+            placeholder="Your Message"
+            cols="30"
+            rows="10"
+          ></textarea>
+          <input type="submit" value="Send Message" class="btn" />
+        </div>
+      </form>
+    </section>
+
+    <footer class="footer">
+      <div class="social-icon">
+        <a href="#">
+          <i class="ri-linkedin-box-line"></i>
+        </a>
+        <a href="#">
+          <i class="ri-github-line"></i>
+        </a>
+        <a href="#">
+          <i class="ri-tiktok-line"></i>
+        </a>
+        <a href="#">
+          <i class="ri-instagram-line"></i>
+        </a>
+      </div>
+
+      <ul class="list">
+        <li>
+          <a href="#">FAQ</a>
+        </li>
+        <li><a href="#hobby">Hobby</a></li>
+        <li><a href="#about">About Me</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <p class="copyright">&copy; 2025 Adib 安利华 | All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>

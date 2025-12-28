@@ -1,0 +1,170 @@
+@media (max-width: 1285px) {
+  #menu-icon {
+    display: block;
+  }
+  .navbar {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    width: 50%;
+    padding: 1rem 3rem;
+    background: rgba(0, 0, 0, 0.8);
+    border-bottom-left-radius: 2rem;
+    border-left: 2px solid var(--main-color);
+    border-bottom: 2px solid var(--main-color);
+    display: none;
+  }
+  .navbar a {
+    display: block;
+    font-size: 2rem;
+    margin: 3rem 0;
+    color: var(--text-color);
+  }
+  .navbar.active {
+    display: block;
+  }
+  .gradient-btn {
+    display: none;
+  }
+  .home {
+    flex-direction: column-reverse;
+    margin: 5rem 0;
+    gap: 5rem;
+  }
+  .home-content {
+    align-items: center;
+    text-align: center;
+  }
+  .home-img img {
+    width: 56vw;
+  }
+
+  .about {
+    flex-direction: column-reverse;
+    text-align: center;
+    gap: 5rem;
+  }
+
+  .about-content h2 {
+    text-align: center;
+  }
+
+  .about-img img {
+    display: none;
+  }
+
+  .tab-titles {
+    justify-content: center;
+  }
+
+  .content-item {
+    flex-direction: column;
+    text-align: center;
+  }
+  .contact form {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 480px) {
+  html {
+    font-size: 52%;
+  }
+
+  .header {
+    padding: 2rem 8%;
+  }
+
+  section {
+    padding: 8rem 8%;
+  }
+
+  .home-content h1 {
+    font-size: 5rem;
+  }
+
+  .home-content h3 {
+    font-size: 2.8rem;
+  }
+
+  .home-img img {
+    width: 70vw;
+  }
+
+  .btn-group {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .btn {
+    width: 100%;
+    text-align: center;
+  }
+
+  .hobby-box {
+    height: auto;
+    padding: 3rem 0;
+  }
+
+  .project-card img {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 600px) {
+  .home {
+    gap: 3rem;
+  }
+
+  .about-content h2 {
+    font-size: 5rem;
+  }
+
+  .heading {
+    font-size: 5rem;
+  }
+
+  .skills-list {
+    margin-top: 3rem;
+  }
+
+  .content-item {
+    padding: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  html {
+    font-size: 56%;
+  }
+
+  .header {
+    padding: 3rem 10%;
+  }
+
+  .home-content {
+    align-items: center;
+    text-align: center;
+  }
+
+  .home-content h1 {
+    font-size: 6rem;
+  }
+
+  .home-content h3 {
+    font-size: 3.2rem;
+  }
+
+  .about {
+    gap: 4rem;
+  }
+
+  .tab-titles {
+    flex-wrap: wrap;
+    gap: 2rem;
+  }
+
+  .hobby-container {
+    grid-template-columns: 1fr;
+  }
+}
