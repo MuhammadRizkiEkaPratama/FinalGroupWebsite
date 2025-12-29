@@ -80,25 +80,6 @@ function opentab(tabname) {
   }
 }
 
-// // Scroll Reveal Animation
-// function revealOnScroll() {
-//   const aboutImg = document.querySelector(".about-img");
-//   const aboutContent = document.querySelector(".about-content");
-//   const windowHeight = window.innerHeight;
-
-//   const imgTop = aboutImg.getBoundingClientRect().top;
-//   const contentTop = aboutContent.getBoundingClientRect().top;
-//   const revealPoint = 150;
-
-//   if (imgTop < windowHeight - revealPoint) {
-//     aboutImg.classList.add("show");
-//   }
-
-//   if (contentTop < windowHeight - revealPoint) {
-//     aboutContent.classList.add("show");
-//   }
-// }
-
 // Universal Scroll Reveal Function for ALL sections
 function revealOnScroll() {
   const reveals = document.querySelectorAll(
