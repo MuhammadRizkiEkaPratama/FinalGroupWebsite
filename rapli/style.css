@@ -60,16 +60,9 @@ nav {
 }
 
 nav ul {
-  max-height: 0;
+  display: flex;
   list-style: none;
-  overflow: hidden;
-  transition: max-height 0.4 ease;
 }
-
-nav ul.active{
-  max-height: 300px;
-}
-
 nav ul li a {
   color: #94a3b8;
   text-decoration: none;
