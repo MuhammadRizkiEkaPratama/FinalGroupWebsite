@@ -1,241 +1,359 @@
 // script.js
+// This file adds interactivity/animation to the portfolio page.
+// Meaning: The HTML/CSS define structure + look; this JS adds behavior (animations, sliders, toggles).
+// Constraint: We keep code defensive so removing sections doesn't crash the whole page.
 
-const yearEl = document.getElementById("year"); // Gets the year element
-yearEl.textContent = new Date().getFullYear(); // Sets current year dynamically
+// ===== BACKGROUND (CURSOR ORB) =====
+// Meaning: A decorative "orb" element follows the cursor smoothly.
+// UX goal: subtle motion / depth, not required for core navigation.
 
-const emailValueEl = document.getElementById("emailValue"); // Gets the email text element
-const copyBtn = document.getElementById("copyEmailBtn"); // Gets copy button
-const copyText = document.getElementById("copyEmailText"); // Gets copy label text
+const orb = document.querySelector(".cursor-orb"); // Find the first element matching the CSS selector; returns Element or null.
 
-const homeBtn = document.getElementById("homeBtn"); // Gets navbar return-home button
-const aboutResumeBtn = document.getElementById("aboutResumeBtn"); // Gets about resume button
+// "if (orb)" is a guard.
+// Meaning: if querySelector returned null (element not on page), we skip this whole feature.
+if (orb) {
+  // Cursor orb follow (smooth)
+  // We keep two positions:
+  // - orbX/orbY: current rendered position
+  // - targetX/targetY: where we WANT it to go (mouse position)
 
-const orb = document.querySelector(".cursor-orb"); // Gets cursor orb element
+  let orbX = window.innerWidth * 0.5; // window.innerWidth = viewport width; start at 50% so it appears centered.
+  let orbY = window.innerHeight * 0.4; // window.innerHeight = viewport height; 40% is slightly above center.
+
+  let targetX = orbX; // Start target at same point so animation begins stable (no sudden jump).
+  let targetY = orbY; // Same idea for Y.
+
+  // Add an event listener (callback) for mouse moves.
+  // Meaning: every time the mouse moves, we update the target.
+  window.addEventListener("mousemove", (e) => {
+    // e is a MouseEvent.
+    // clientX/clientY are the cursor coordinates in pixels relative to the viewport.
+    targetX = e.clientX;
+    targetY = e.clientY;
+  });
+
+  // Define the animation loop.
+  // Meaning: requestAnimationFrame calls this before each repaint (~60fps).
+  function animateOrb() {
+    // This is a "lerp" style smoothing.
+    // (target - current) is the remaining distance.
+    // Multiplying by 0.08 moves 8% of the remaining distance per frame.
+    orbX += (targetX - orbX) * 0.08;
+    orbY += (targetY - orbY) * 0.08;
+
+    // Update the element's inline CSS position.
+    // Meaning: the orb element must be positioned (absolute/fixed) in CSS for left/top to work.
+    orb.style.left = `${orbX}px`;
+    orb.style.top = `${orbY}px`;
+
+    // Schedule the next frame.
+    requestAnimationFrame(animateOrb);
+  }
+
+  // Start the animation loop once.
+  animateOrb();
+}
 
 
 // ===== HERO NAME TYPEWRITER (RIZKI → 李睿祺) =====
+// Meaning: The hero name alternates between two strings using a type/delete animation.
+// Accessibility: Respects prefers-reduced-motion.
 
-const typeNameEl = document.getElementById("typeName"); // Gets the hero name element
+const typeNameEl = document.getElementById("typeName"); // Get element by id; returns HTMLElement or null.
 
-const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches; // Checks reduced motion preference
+// matchMedia checks a CSS media query from JS.
+// prefers-reduced-motion: reduce is set by OS/browser when user wants fewer animations.
+const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-const nameSequence = ["RIZKI EKA", "李睿祺"]; // Defines the text sequence to type
-let nameSeqIndex = 0; // Stores current sequence index
-let nameCharIndex = 0; // Stores current character index
-let nameIsDeleting = false; // Tracks whether we are deleting
+const nameSequence = ["RIZKI EKA", "李睿祺"]; // The strings we rotate through.
+let nameSeqIndex = 0; // Which string we are on right now (index into nameSequence).
+let nameCharIndex = 0; // How many characters we show from the current string.
+let nameIsDeleting = false; // State machine: false=typing forward, true=deleting backward.
 
-const TYPE_SPEED = 90; // Typing speed in ms
-const DELETE_SPEED = 95; // Deleting speed in ms
-const HOLD_TIME = 4000; // Hold time at full word in ms
+const TYPE_SPEED = 90; // Delay between adding characters (ms).
+const DELETE_SPEED = 95; // Delay between removing characters (ms).
+const HOLD_TIME = 4000; // Pause when the full word is shown (ms).
 
-function tickTypewriter() { // Runs one step of the typewriter
-  if (!typeNameEl) return; // Stops if element does not exist
-  if (prefersReducedMotion) { // If user prefers reduced motion
-    typeNameEl.textContent = nameSequence[0]; // Sets static text
-    return; // Stops animation
-  } // Ends reduced motion
+function tickTypewriter() {
+  // If the target element doesn't exist, do nothing.
+  // Meaning: prevents "Cannot set properties of null" errors.
+  if (!typeNameEl) return;
 
-  const fullText = nameSequence[nameSeqIndex]; // Gets the current full word
+  // If reduced motion is requested, show static text and stop.
+  if (prefersReducedMotion) {
+    typeNameEl.textContent = nameSequence[0];
+    return;
+  }
 
-  if (!nameIsDeleting) { // If we are typing
-    nameCharIndex += 1; // Moves forward one character
-  } else { // If we are deleting
-    nameCharIndex -= 1; // Moves back one character
-  } // Ends typing/deleting branch
+  // Select the full text we are currently typing/deleting.
+  const fullText = nameSequence[nameSeqIndex];
 
-  const nextText = fullText.slice(0, nameCharIndex); // Slices text to current length
-  typeNameEl.textContent = nextText; // Applies the text to the DOM
+  // Update the character index depending on whether we are typing or deleting.
+  if (!nameIsDeleting) {
+    nameCharIndex += 1;
+  } else {
+    nameCharIndex -= 1;
+  }
 
-  const isComplete = nextText === fullText; // Checks if typing finished
-  const isEmpty = nextText.length === 0; // Checks if deleting finished
+  // slice(0, N) gives the first N characters.
+  const nextText = fullText.slice(0, nameCharIndex);
+  // Write it into the DOM.
+  typeNameEl.textContent = nextText;
 
-  if (isComplete) { // If we finished typing
-    nameIsDeleting = true; // Switch to deleting
-    setTimeout(tickTypewriter, HOLD_TIME); // Holds then continues
-    return; // Stops this tick
-  } // Ends complete block
+  // Check boundary conditions.
+  const isComplete = nextText === fullText; // We've typed the full string.
+  const isEmpty = nextText.length === 0; // We've deleted everything.
 
-  if (isEmpty && nameIsDeleting) { // If we finished deleting
-    nameIsDeleting = false; // Switch to typing
-    nameSeqIndex = (nameSeqIndex + 1) % nameSequence.length; // Moves to next word
-    setTimeout(tickTypewriter, 250); // Small pause before typing
-    return; // Stops this tick
-  } // Ends empty block
+  // When complete, switch to deleting and wait.
+  if (isComplete) {
+    nameIsDeleting = true;
+    setTimeout(tickTypewriter, HOLD_TIME);
+    return;
+  }
 
-  const delay = nameIsDeleting ? DELETE_SPEED : TYPE_SPEED; // Picks speed based on mode
-  setTimeout(tickTypewriter, delay); // Schedules next tick
-} // Ends tickTypewriter
+  // When empty after deleting, switch to next word and start typing again.
+  if (isEmpty && nameIsDeleting) {
+    nameIsDeleting = false;
+    nameSeqIndex = (nameSeqIndex + 1) % nameSequence.length; // Modulo loops back to 0.
+    setTimeout(tickTypewriter, 250);
+    return;
+  }
 
-tickTypewriter(); // Starts the typewriter animation
+  // Normal tick scheduling: pick the delay by state.
+  const delay = nameIsDeleting ? DELETE_SPEED : TYPE_SPEED;
+  setTimeout(tickTypewriter, delay);
+}
+
+// Start the typewriter loop.
+tickTypewriter();
 
 
 // ===== PROJECTS SLIDER (LOOPING + CENTERED) =====
+// Meaning: A carousel that centers the active card.
+// Technique: clones at both ends + snap after transition to fake infinite looping.
 
-const viewport = document.getElementById("viewport"); // Gets the viewport element
-const inner = document.getElementById("track"); // Gets the inner track element
-const prevBtn = document.getElementById("prevBtn"); // Gets previous button
-const nextBtn = document.getElementById("nextBtn"); // Gets next button
-const dotsEl = document.getElementById("dots"); // Gets dots container
+const viewport = document.getElementById("viewport"); // The visible window of the carousel.
+const inner = document.getElementById("track"); // The moving track that is translated with CSS transform.
+const prevBtn = document.getElementById("prevBtn"); // Prev navigation button.
+const nextBtn = document.getElementById("nextBtn"); // Next navigation button.
+const dotsEl = document.getElementById("dots"); // Dots container.
 
-const CLONE_COUNT = 2; // Number of clones on each side for smooth looping
-let isAnimating = false; // Locks clicks while sliding
-let currentIndex = 0; // Current index in the "all slides" array (includes clones)
-let originalCount = 0; // Number of real slides
-let slides = []; // All slides including clones
+const CLONE_COUNT = 1; // Number of slides cloned on each side.
+let isAnimating = false; // Lock to prevent rapid clicking during transitions.
+let currentIndex = 0; // Index in slides array INCLUDING clones.
+let originalCount = 0; // Number of real slides.
+let slides = []; // Actual slide elements currently in the DOM.
 
-function getGapPx() { // Reads the flex gap value in pixels
-  const gap = getComputedStyle(inner).gap; // Gets gap (like "18px")
-  return parseFloat(gap || "0"); // Converts to number
-} // End getGapPx
+function getGapPx() {
+  // getComputedStyle returns the final computed CSS values.
+  // inner must exist; in this project, HTML ensures it.
+  const gap = getComputedStyle(inner).gap; // Usually a string like "18px".
+  return parseFloat(gap || "0"); // Convert "18px" -> 18.
+}
 
-function setActiveClass() { // Adds .is-active to the center slide
-  slides.forEach((s) => s.classList.remove("is-active")); // Removes active class from all slides
-  if (slides[currentIndex]) slides[currentIndex].classList.add("is-active"); // Adds active to current
-} // End setActiveClass
+function setActiveClass() {
+  // Remove active class from all slides.
+  slides.forEach((s) => s.classList.remove("is-active"));
+  // Add active class to current slide (if it exists).
+  if (slides[currentIndex]) slides[currentIndex].classList.add("is-active");
+}
 
-function logicalIndex() { // Converts currentIndex (with clones) to real index (0..originalCount-1)
-  return (currentIndex - CLONE_COUNT + originalCount) % originalCount; // Wraps using modulo
-} // End logicalIndex
+function logicalIndex() {
+  // Convert clone-inclusive index into real index.
+  // We subtract CLONE_COUNT (because first real slide starts after clones).
+  // We add originalCount before modulo to avoid negative values.
+  return (currentIndex - CLONE_COUNT + originalCount) % originalCount;
+}
 
-function buildDots() { // Creates dots based on real slides only
-  dotsEl.innerHTML = ""; // Clears dots
-  for (let i = 0; i < originalCount; i++) { // Loops through real slides count
-    const dot = document.createElement("button"); // Creates dot button
-    dot.className = "dot"; // Adds dot class
-    dot.type = "button"; // Sets type
-    dot.setAttribute("aria-label", `Go to project ${i + 1}`); // Accessibility label
-    dot.addEventListener("click", () => goToReal(i)); // Clicking dot goes to slide
-    dotsEl.appendChild(dot); // Adds dot to dots container
-  } // Ends loop
-  updateDots(); // Updates active dot state
-} // End buildDots
+function buildDots() {
+  // Clear any existing dots first.
+  dotsEl.innerHTML = "";
 
-function updateDots() { // Updates active dot
-  const dots = Array.from(dotsEl.querySelectorAll(".dot")); // Gets dot list
-  const active = logicalIndex(); // Gets active real index
-  dots.forEach((d, i) => d.classList.toggle("active", i === active)); // Toggles active
-} // End updateDots
+  // Make one dot per real slide.
+  for (let i = 0; i < originalCount; i++) {
+    const dot = document.createElement("button");
+    dot.className = "dot";
+    dot.type = "button";
+    dot.setAttribute("aria-label", `Go to project ${i + 1}`);
+    dot.addEventListener("click", () => goToReal(i));
+    dotsEl.appendChild(dot);
+  }
 
-function centerToIndex(idx, animate = true) { // Centers a given slide index in viewport
-  const gap = getGapPx(); // Gets gap size
-  const slide = slides[idx]; // Gets slide
-  if (!slide) return; // Stops if not found
+  // After building, update which dot is active.
+  updateDots();
+}
 
-  const viewportW = viewport.getBoundingClientRect().width; // Gets viewport width
-  const slideW = slide.getBoundingClientRect().width; // Gets slide width
-  const slideLeft = slide.offsetLeft; // Gets slide position inside inner
+function updateDots() {
+  // Query dots and make an array to iterate.
+  const dots = Array.from(dotsEl.querySelectorAll(".dot"));
+  // Find which real slide is active.
+  const active = logicalIndex();
+  // Toggle the .active class.
+  dots.forEach((d, i) => d.classList.toggle("active", i === active));
+}
 
-  const targetX = (viewportW / 2) - (slideW / 2) - slideLeft; // Compute translateX so slide centers
+function centerToIndex(idx, animate = true) {
+  // gap is not used directly in the centering formula right now,
+  // but leaving it is helpful if you later adjust spacing logic.
+  const gap = getGapPx();
 
+  // Pick the slide element.
+  const slide = slides[idx];
+  if (!slide) return;
+
+  // Read layout metrics from DOM.
+  const viewportW = viewport.getBoundingClientRect().width;
+  const slideW = slide.getBoundingClientRect().width;
+  const slideLeft = slide.offsetLeft;
+
+  // Compute transform so slide center aligns with viewport center.
+  const targetX = (viewportW / 2) - (slideW / 2) - slideLeft;
+
+  // Decide whether we animate.
   inner.style.transition = animate
-    ? "transform 520ms cubic-bezier(.2,.8,.2,1)" // Smooth slide
-    : "none"; // No animation (for snap resets)
+    ? "transform 520ms cubic-bezier(.2,.8,.2,1)"
+    : "none";
 
-  inner.style.transform = `translateX(${targetX}px)`; // Applies transform
-  currentIndex = idx; // Updates currentIndex
-  setActiveClass(); // Updates active card class
-  updateDots(); // Updates dots
-} // End centerToIndex
+  // Apply the translateX to the track.
+  inner.style.transform = `translateX(${targetX}px)`;
 
-function rebuildSlidesWithClones() { // Creates clones for infinite loop
-  const originals = Array.from(inner.querySelectorAll(".projectCard")); // Gets real slides
-  originalCount = originals.length; // Saves real slide count
+  // Update state.
+  currentIndex = idx;
 
-  const before = originals.slice(-CLONE_COUNT).map((s) => s.cloneNode(true)); // Clones last slides
-  const after = originals.slice(0, CLONE_COUNT).map((s) => s.cloneNode(true)); // Clones first slides
+  // Sync UI.
+  setActiveClass();
+  updateDots();
+}
 
-  inner.innerHTML = ""; // Clears inner track
-  before.forEach((c) => inner.appendChild(c)); // Adds clones at start
-  originals.forEach((s) => inner.appendChild(s)); // Adds real slides
-  after.forEach((c) => inner.appendChild(c)); // Adds clones at end
+function rebuildSlidesWithClones() {
+  // Get the real slides currently present.
+  const originals = Array.from(inner.querySelectorAll(".projectCard"));
+  originalCount = originals.length;
 
-  slides = Array.from(inner.querySelectorAll(".projectCard")); // Updates slides list
-  currentIndex = CLONE_COUNT; // Starts at first real slide (after clones)
-} // End rebuildSlidesWithClones
+  // Clone last N slides for the left side.
+  const before = originals.slice(-CLONE_COUNT).map((s) => s.cloneNode(true));
+  // Clone first N slides for the right side.
+  const after = originals.slice(0, CLONE_COUNT).map((s) => s.cloneNode(true));
 
-function snapIfNeeded() { // Snaps index when reaching clone edges
-  if (currentIndex >= CLONE_COUNT + originalCount) { // If moved past last real into clones
-    centerToIndex(CLONE_COUNT, false); // Snap back to first real (no animation)
-  } // End if
+  // Clear track.
+  inner.innerHTML = "";
+  // Insert left clones.
+  before.forEach((c) => inner.appendChild(c));
+  // Insert real slides.
+  originals.forEach((s) => inner.appendChild(s));
+  // Insert right clones.
+  after.forEach((c) => inner.appendChild(c));
 
-  if (currentIndex < CLONE_COUNT) { // If moved before first real into clones
-    centerToIndex(CLONE_COUNT + originalCount - 1, false); // Snap to last real (no animation)
-  } // End if
-} // End snapIfNeeded
+  // Refresh slides array.
+  slides = Array.from(inner.querySelectorAll(".projectCard"));
+  // Start at first real slide.
+  currentIndex = CLONE_COUNT;
+}
 
-function slideBy(dir) { // Slides left/right by 1
-  if (isAnimating) return; // Prevent spam clicks
-  isAnimating = true; // Locks animation
-  centerToIndex(currentIndex + dir, true); // Moves to next/prev slide with animation
-} // End slideBy
+function snapIfNeeded() {
+  // If we moved beyond the last real slide, we're on the right clone.
+  if (currentIndex >= CLONE_COUNT + originalCount) {
+    centerToIndex(CLONE_COUNT, false);
+  }
 
-function goToReal(realIdx) { // Goes to a real slide index (0..originalCount-1)
-  if (isAnimating) return; // Prevent spam clicks
-  isAnimating = true; // Locks animation
-  centerToIndex(CLONE_COUNT + realIdx, true); // Maps to internal index
-} // End goToReal
+  // If we moved before the first real slide, we're on the left clone.
+  if (currentIndex < CLONE_COUNT) {
+    centerToIndex(CLONE_COUNT + originalCount - 1, false);
+  }
+}
 
-inner.addEventListener("transitionend", () => { // Fires when sliding animation ends
-  snapIfNeeded(); // Snaps if we're in clone region
-  isAnimating = false; // Unlocks sliding
-}); // End transitionend
+function slideBy(dir) {
+  // dir should be -1 or +1.
+  if (isAnimating) return;
+  isAnimating = true;
+  centerToIndex(currentIndex + dir, true);
+}
 
-prevBtn.addEventListener("click", () => slideBy(-1)); // Prev button
-nextBtn.addEventListener("click", () => slideBy(1)); // Next button
+function goToReal(realIdx) {
+  if (isAnimating) return;
+  isAnimating = true;
+  centerToIndex(CLONE_COUNT + realIdx, true);
+}
 
-window.addEventListener("resize", () => { // Re-centers on resize
-  centerToIndex(currentIndex, false); // Re-center without animation
-}); // End resize
+// When the CSS transition ends, we can safely snap and unlock.
+inner.addEventListener("transitionend", () => {
+  snapIfNeeded();
+  isAnimating = false;
+});
 
-// Init slider
-rebuildSlidesWithClones(); // Builds clones + updates slides
-buildDots(); // Builds dots
-centerToIndex(currentIndex, false); // Centers first real slide (no animation)
+// Hook up button clicks.
+prevBtn.addEventListener("click", () => slideBy(-1));
+nextBtn.addEventListener("click", () => slideBy(1));
 
-copyBtn.addEventListener("click", async () => { // Copy email click handler
-  const email = emailValueEl.textContent.trim(); // Reads email text
-  try { // Starts try block
-    await navigator.clipboard.writeText(email); // Copies email to clipboard
-    copyText.textContent = "Email copied ✓"; // Updates button text
-    setTimeout(() => (copyText.textContent = "Copy Email"), 1300); // Resets text later
-  } catch (e) { // If clipboard fails
-    copyText.textContent = "Copy failed"; // Shows failure
-    setTimeout(() => (copyText.textContent = "Copy Email"), 1300); // Resets text later
-  } // Ends catch
-}); // Ends copy handler
+// On resize, re-center the current slide (no animation).
+window.addEventListener("resize", () => {
+  centerToIndex(currentIndex, false);
+});
 
-function openResume() { // Function to open resume
-  // Replace this with your real resume link:
-  window.open("assets/resume.pdf", "_blank", "noopener,noreferrer"); // Opens resume in new tab
-} // Ends openResume
+// Init slider.
+rebuildSlidesWithClones();
+buildDots();
+centerToIndex(currentIndex, false);
 
-// Navbar button is used for "Return Home" in HTML (no JS behavior needed).
-// Keep resume open behavior on the About section button only.
-if (aboutResumeBtn) aboutResumeBtn.addEventListener("click", openResume); // Opens resume from about section
 
-document.querySelectorAll("[data-scroll]").forEach((btn) => { // Finds all scroll-to buttons
-  btn.addEventListener("click", () => { // Adds click handler
-    const target = btn.getAttribute("data-scroll"); // Reads target selector
-    document.querySelector(target)?.scrollIntoView({ behavior: "smooth" }); // Scrolls smoothly
-  }); // Ends click handler
-}); // Ends loop
+// ===== OFFER (COLLAPSE / EXPAND CARDS) =====
+// Meaning: The arrow button toggles showing/hiding the card body.
+// Mechanism: toggle CSS class "is-open" and let CSS transitions handle visuals.
 
-// Cursor orb follow (smooth)
-let orbX = window.innerWidth * 0.5; // Starting x
-let orbY = window.innerHeight * 0.4; // Starting y
-let targetX = orbX; // Target x
-let targetY = orbY; // Target y
+document.querySelectorAll("[data-offer-toggle]").forEach((btn) => {
+  // Find the offer card this button belongs to.
+  const card = btn.closest(".offerCard");
+  if (!card) return;
 
-window.addEventListener("mousemove", (e) => { // Tracks mouse movement
-  targetX = e.clientX; // Sets target x
-  targetY = e.clientY; // Sets target y
-}); // Ends mousemove
+  function syncOfferButton() {
+    // isOpen describes the current state.
+    const isOpen = card.classList.contains("is-open");
+    // Update arrow icon.
+    btn.textContent = isOpen ? "↑" : "↓";
+    // Update ARIA state for assistive technologies.
+    btn.setAttribute("aria-expanded", String(isOpen));
+    btn.setAttribute("aria-label", isOpen ? "Collapse card" : "Expand card");
+  }
 
-function animateOrb() { // Animation loop
-  orbX += (targetX - orbX) * 0.08; // Smoothly interpolate x
-  orbY += (targetY - orbY) * 0.08; // Smoothly interpolate y
-  orb.style.left = `${orbX}px`; // Applies x position
-  orb.style.top = `${orbY}px`; // Applies y position
-  requestAnimationFrame(animateOrb); // Loops animation
-} // Ends animateOrb
-animateOrb(); // Starts orb animation
+  // Initial sync so UI matches default HTML state.
+  syncOfferButton();
+
+  // Toggle on click.
+  btn.addEventListener("click", (e) => {
+    e.preventDefault();
+    card.classList.toggle("is-open");
+    syncOfferButton();
+  });
+});
+
+
+// ===== CONTACT (COPY EMAIL) =====
+// Meaning: Clicking a button copies the email text to clipboard.
+
+const emailValueEl = document.getElementById("emailValue");
+const copyBtn = document.getElementById("copyEmailBtn");
+const copyText = document.getElementById("copyEmailText");
+
+// Only attach click handler if all required elements exist.
+if (copyBtn && emailValueEl && copyText) {
+  copyBtn.addEventListener("click", async () => {
+    const email = emailValueEl.textContent.trim();
+
+    try {
+      // Clipboard API typically requires HTTPS/localhost.
+      await navigator.clipboard.writeText(email);
+      copyText.textContent = "Email copied ✓";
+      setTimeout(() => (copyText.textContent = "Copy Email"), 1300);
+    } catch (e) {
+      copyText.textContent = "Copy failed";
+      setTimeout(() => (copyText.textContent = "Copy Email"), 1300);
+    }
+  });
+}
+
+
+// ===== FOOTER (YEAR) =====
+// Meaning: Auto-updates the year in the footer so you don't need to edit it every year.
+
+const yearEl = document.getElementById("year");
+if (yearEl) yearEl.textContent = new Date().getFullYear();

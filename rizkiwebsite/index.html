@@ -42,10 +42,10 @@
   </header> <!-- Ends header -->
 
   <aside class="social" aria-label="Social links"> <!-- Left vertical social bar -->
-    <a class="social__icon" href="#" target="_blank" rel="noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a> <!-- LinkedIn -->
-    <a class="social__icon" href="#" target="_blank" rel="noreferrer" aria-label="GitHub"><i class="fab fa-github"></i></a> <!-- GitHub -->
-    <a class="social__icon" href="#" target="_blank" rel="noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a> 
-    <a class="social__icon" href="#" target="_blank" rel="noreferrer" aria-label="YouTube"><i class="fab fa-youtube"></i></a> <!-- YouTube -->
+    <a class="social__icon" href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a> <!-- LinkedIn -->
+    <a class="social__icon" href="#" aria-label="GitHub"><i class="fab fa-github"></i></a> <!-- GitHub -->
+    <a class="social__icon" href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a> 
+    <a class="social__icon" href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a> <!-- YouTube -->
   </aside> <!-- Ends social bar -->
 
   <main class="main"> <!-- Main content wrapper -->
@@ -101,10 +101,10 @@
             </p> <!-- About paragraph -->
 
             <div class="about__actions"> <!-- About buttons row -->
-              <button class="pill" id="aboutResumeBtn" type="button"> <!-- Resume pill button -->
+              <a class="pill" href="#offer"> <!-- Resume pill button -->
                 <span>Resume</span> <!-- Label -->
                 <span class="pill__icon" aria-hidden="true">↗</span> <!-- Icon -->
-              </button> <!-- Ends resume pill -->
+              </a> <!-- Ends resume pill -->
               <a class="ghostLink" href="#projects">View Projects →</a> <!-- Smooth scroll link -->
             </div> <!-- Ends actions -->
           </div> <!-- Ends about right -->
@@ -259,42 +259,50 @@
 
           <article class="offerCard"> <!-- Developer card -->
             <h4 class="offerCard__title">Developer</h4> <!-- Card title -->
-            <p class="offerCard__text">
-              Website creation with HTML, CSS, JavaScript. Professional websites with modern stacks and clean UX.
-            </p> <!-- Card description -->
 
-            <p class="offerCard__label">Skills & Tools</p> <!-- Skills label -->
-            <div class="chips"> <!-- Chips wrapper -->
-              <span class="chip">HTML</span> <!-- Chip -->
-              <span class="chip">CSS</span> <!-- Chip -->
-              <span class="chip">JavaScript</span> <!-- Chip -->
-              <span class="chip">React</span> <!-- Chip -->
-              <span class="chip">TypeScript</span> <!-- Chip -->
-              <span class="chip">Node.js</span> <!-- Chip -->
-              <span class="chip">Next.js</span> <!-- Chip -->
-              <span class="chip">PHP</span> <!-- Chip -->
-              <span class="chip">GitHub</span> <!-- Chip -->
-            </div> <!-- Ends chips -->
-            <button class="miniTop" type="button" data-scroll="#top" aria-label="Back to top">↑</button> <!-- Scroll-to-top -->
+            <div class="offerCard__body"> <!-- Collapsible content -->
+              <p class="offerCard__text">
+                Website creation with HTML, CSS, JavaScript. Professional websites with modern stacks and clean UX.
+              </p> <!-- Card description -->
+
+              <p class="offerCard__label">Skills & Tools</p> <!-- Skills label -->
+              <div class="chips"> <!-- Chips wrapper -->
+                <span class="chip">HTML</span> <!-- Chip -->
+                <span class="chip">CSS</span> <!-- Chip -->
+                <span class="chip">JavaScript</span> <!-- Chip -->
+                <span class="chip">React</span> <!-- Chip -->
+                <span class="chip">TypeScript</span> <!-- Chip -->
+                <span class="chip">Node.js</span> <!-- Chip -->
+                <span class="chip">Next.js</span> <!-- Chip -->
+                <span class="chip">PHP</span> <!-- Chip -->
+                <span class="chip">GitHub</span> <!-- Chip -->
+              </div> <!-- Ends chips -->
+            </div> <!-- Ends collapsible content -->
+
+            <button class="miniTop" type="button" data-offer-toggle aria-label="Expand card" aria-expanded="false">↓</button> <!-- Collapse/expand -->
           </article> <!-- Ends developer card -->
 
           <article class="offerCard offerCard--alt"> <!-- Design card -->
             <h4 class="offerCard__title">Design</h4> <!-- Card title -->
-            <p class="offerCard__text">
-              Web design, UI systems, motion experiments, and visual polish for premium-looking interfaces.
-            </p> <!-- Card description -->
 
-            <p class="offerCard__label">Skills & Tools</p> <!-- Skills label -->
-            <div class="chips"> <!-- Chips wrapper -->
-              <span class="chip">Figma</span> <!-- Chip -->
-              <span class="chip">Adobe XD</span> <!-- Chip -->
-              <span class="chip">Photoshop</span> <!-- Chip -->
-              <span class="chip">Illustrator</span> <!-- Chip -->
-              <span class="chip">Sketch</span> <!-- Chip -->
-              <span class="chip">3D Modeling</span> <!-- Chip -->
-              <span class="chip">After Effects</span> <!-- Chip -->
-            </div> <!-- Ends chips -->
-            <button class="miniTop" type="button" data-scroll="#top" aria-label="Back to top">↑</button> <!-- Scroll-to-top -->
+            <div class="offerCard__body"> <!-- Collapsible content -->
+              <p class="offerCard__text">
+                Web design, UI systems, motion experiments, and visual polish for premium-looking interfaces.
+              </p> <!-- Card description -->
+
+              <p class="offerCard__label">Skills & Tools</p> <!-- Skills label -->
+              <div class="chips"> <!-- Chips wrapper -->
+                <span class="chip">Figma</span> <!-- Chip -->
+                <span class="chip">Adobe XD</span> <!-- Chip -->
+                <span class="chip">Photoshop</span> <!-- Chip -->
+                <span class="chip">Illustrator</span> <!-- Chip -->
+                <span class="chip">Sketch</span> <!-- Chip -->
+                <span class="chip">3D Modeling</span> <!-- Chip -->
+                <span class="chip">After Effects</span> <!-- Chip -->
+              </div> <!-- Ends chips -->
+            </div> <!-- Ends collapsible content -->
+
+            <button class="miniTop" type="button" data-offer-toggle aria-label="Expand card" aria-expanded="false">↓</button> <!-- Collapse/expand -->
           </article> <!-- Ends design card -->
 
         </div> <!-- Ends offer grid -->
@@ -329,18 +337,18 @@
 
           <div class="contactBox"> <!-- Middle box -->
             <h4 class="contactBox__title accent">Social Media</h4> <!-- Social title -->
-            <a class="contactLink" href="#" target="_blank" rel="noreferrer">LinkedIn <span aria-hidden="true">↗</span></a> <!-- LinkedIn -->
-            <a class="contactLink" href="#" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a> <!-- GitHub -->
-            <a class="contactLink" href="#" target="_blank" rel="noreferrer">Dribbble <span aria-hidden="true">↗</span></a> <!-- Dribbble -->
-            <a class="contactLink" href="#" target="_blank" rel="noreferrer">GitLab <span aria-hidden="true">↗</span></a> <!-- GitLab -->
+            <a class="contactLink" href="#">LinkedIn <span aria-hidden="true">↗</span></a> <!-- LinkedIn -->
+            <a class="contactLink" href="#">GitHub <span aria-hidden="true">↗</span></a> <!-- GitHub -->
+            <a class="contactLink" href="#">Dribbble <span aria-hidden="true">↗</span></a> <!-- Dribbble -->
+            <a class="contactLink" href="#">GitLab <span aria-hidden="true">↗</span></a> <!-- GitLab -->
           </div> <!-- Ends middle box -->
 
           <div class="contactBox"> <!-- Right box -->
             <h4 class="contactBox__title accent">Write Me & We'll Talk</h4> <!-- Chat title -->
-            <a class="contactLink" href="#" target="_blank" rel="noreferrer">WhatsApp <span aria-hidden="true">↗</span></a> <!-- WhatsApp -->
-            <a class="contactLink" href="#" target="_blank" rel="noreferrer">Messenger <span aria-hidden="true">↗</span></a> <!-- Messenger -->
-            <a class="contactLink" href="#" target="_blank" rel="noreferrer">Telegram <span aria-hidden="true">↗</span></a> <!-- Telegram -->
-            <a class="contactLink" href="#" target="_blank" rel="noreferrer">Instagram <span aria-hidden="true">↗</span></a> <!-- Instagram -->
+            <a class="contactLink" href="#">WhatsApp <span aria-hidden="true">↗</span></a> <!-- WhatsApp -->
+            <a class="contactLink" href="#">Messenger <span aria-hidden="true">↗</span></a> <!-- Messenger -->
+            <a class="contactLink" href="#">Telegram <span aria-hidden="true">↗</span></a> <!-- Telegram -->
+            <a class="contactLink" href="#">Instagram <span aria-hidden="true">↗</span></a> <!-- Instagram -->
           </div> <!-- Ends right box -->
 
         </div> <!-- Ends contact grid -->
@@ -351,7 +359,7 @@
 
   <footer class="footer"> <!-- Footer section -->
     <div class="container footer__inner"> <!-- Footer container -->
-      <p class="footer__text">All Rights Reserved By <a class="footer__link" href="#" target="_blank" rel="noreferrer">WebsiteLecture</a></p> <!-- Credit line -->
+      <p class="footer__text">All Rights Reserved By <a class="footer__link" href="#">WebsiteLecture</a></p> <!-- Credit line -->
       <p class="footer__text muted">© <span id="year"></span></p> <!-- Dynamic year -->
     </div> <!-- Ends footer container -->
   </footer> <!-- Ends footer -->
