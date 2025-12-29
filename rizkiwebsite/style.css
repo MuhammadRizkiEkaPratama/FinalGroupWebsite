@@ -1,6 +1,20 @@
 /* style.css */
+/*
+  Purpose:
+  - This file defines the visual design (layout, spacing, colors, typography) for the portfolio page.
+  - HTML provides structure, JS provides behavior; CSS provides how things look + respond to screen size.
+
+  Rules (per your request):
+  - Keep styles grouped by section order (Background → Header/Nav → Social → Hero → About → Projects → Offer → Contact → Footer).
+  - Do NOT refactor or change the responsive section at the bottom (the RESPONSIVE header and its @media blocks).
+
+  Note:
+  - Many lines already have inline comments; here we improve the *section* comments to explain meaning and intent.
+*/
 
 /* ===== CSS VARIABLES ===== */
+/* Meaning: Design tokens (colors, radii, shadows) used across the entire site.
+  Benefit: change theme in one place, keep the rest consistent. */
 :root { /* Root scope for theme variables */
   --bg: #05060b; /* Main background color */
   --panel: rgba(255, 255, 255, 0.04); /* Glass panel base */
@@ -32,6 +46,7 @@
 } /* End variables */
 
 /* ===== BASE RESET ===== */
+/* Meaning: Normalize some default browser behaviors (box sizing, margins, base fonts). */
 * { /* Select all elements */
   box-sizing: border-box; /* Include padding/border in size */
 } /* End universal selector */
@@ -51,6 +66,7 @@ body { /* Body styles */
 } /* End body */
 
 /* ===== SCROLLBAR (THEMED) ===== */
+/* Meaning: Custom scrollbar styling (supported in WebKit browsers + partial in Firefox). */
 ::-webkit-scrollbar { /* Chrome/Edge/Safari */
   width: 12px; /* Scrollbar width */
 } /* End webkit scrollbar */
@@ -70,6 +86,8 @@ body { /* Body styles */
 } /* End thumb hover */
 
 /* ===== BACKGROUND LAYERS ===== */
+/* Meaning: Decorative background elements (blobs, grain, cursor orb).
+  Note: these are visual-only; they should not block interactions (pointer-events: none). */
 .bg { /* Background wrapper */
   position: fixed; /* Fixed background */
   inset: 0; /* Cover whole screen */
@@ -120,6 +138,7 @@ body { /* Body styles */
 } /* End orb */
 
 /* ===== LAYOUT HELPERS ===== */
+/* Meaning: Small utility classes used in multiple sections (container, muted text, etc). */
 .container { /* Container class */
   width: min(1100px, calc(100% - 48px)); /* Max width and padding */
   margin: 0 auto; /* Center horizontally */
@@ -137,32 +156,9 @@ body { /* Body styles */
   color: var(--accent2); /* Accent color */
 } /* End .accent */
 
-.typewriter { /* Typewriter text */
-  display: inline-block; /* Keeps caret aligned */
-  padding-right: 6px; /* Space before caret */
-  border-right: 2px solid var(--accent2); /* Caret */
-  animation: caretBlink 900ms steps(1) infinite; /* Blink */
-} /* End typewriter */
-
-@keyframes caretBlink { /* Caret blink keyframes */
-  50% { /* Midpoint */
-    border-right-color: transparent; /* Hide caret */
-  } /* End midpoint */
-} /* End caretBlink */
-
-.srOnly { /* Visually hidden text (screen readers) */
-  position: absolute; /* Remove from flow */
-  width: 1px; /* Tiny */
-  height: 1px; /* Tiny */
-  padding: 0; /* Reset */
-  margin: -1px; /* Offscreen */
-  overflow: hidden; /* Hide */
-  clip: rect(0, 0, 0, 0); /* Clip */
-  white-space: nowrap; /* Prevent wrap */
-  border: 0; /* Reset */
-} /* End srOnly */
-
 /* ===== HEADER / NAV ===== */
+/* Meaning: Sticky top navigation with glass effect.
+  Goal: keep navigation accessible while scrolling, without being too visually heavy. */
 .header { /* Header wrapper */
   position: sticky; /* Stick at top */
   top: 0; /* Top position */
@@ -204,8 +200,6 @@ body { /* Body styles */
   gap: 26px; /* Spacing */
   align-items: center; /* Align */
 } /* End links */
-
-.nav
 
 .nav__link { /* Single nav link */
   color: rgba(243, 244, 246, 0.88); /* Link color */
@@ -254,6 +248,8 @@ body { /* Body styles */
 } /* End nav btn icon i */
 
 /* ===== SOCIAL BAR ===== */
+/* Meaning: Left-side fixed social icons.
+  Responsive rule: hidden on small screens (handled in RESPONSIVE section). */
 .social { /* Social container */
   position: fixed; /* Fixed position */
   left: 20px; /* Left offset */
@@ -289,6 +285,8 @@ body { /* Body styles */
 } /* End hover */
 
 /* ===== HERO ===== */
+/* Meaning: First screen section (intro, name, portrait).
+  Includes the typewriter caret visuals (actual typing behavior is in JS). */
 .main { /* Main wrapper */
   padding-bottom: 80px; /* Space bottom */
 } /* End main */
@@ -341,6 +339,19 @@ body { /* Body styles */
   margin: 0 10px; /* Space */
 } /* End amp */
 
+.typewriter { /* Typewriter caret (Hero name) */
+  display: inline-block; /* Keeps caret aligned */
+  padding-right: 6px; /* Space before caret */
+  border-right: 2px solid var(--accent2); /* Caret */
+  animation: caretBlink 900ms steps(1) infinite; /* Blink */
+} /* End typewriter */
+
+@keyframes caretBlink { /* Caret blink keyframes */
+  50% { /* Midpoint */
+    border-right-color: transparent; /* Hide caret */
+  } /* End midpoint */
+} /* End caretBlink */
+
 .portrait { /* Portrait wrapper */
   width: min(420px, 100%); /* Responsive width */
   margin: 0 auto; /* Center */
@@ -370,6 +381,7 @@ body { /* Body styles */
 } /* End image */
 
 /* ===== ABOUT ===== */
+/* Meaning: About section (photo + text + action buttons). */
 .about { /* About section */
   padding: 200px 0 200px; /* Spacing */
 } /* End about */
@@ -454,6 +466,8 @@ body { /* Body styles */
 } /* End icon */
 
 /* ===== PROJECTS ===== */
+/* Meaning: Projects carousel/slider.
+  CSS handles sizing/active styles; JS handles sliding logic and active state updates. */
 .projects { /* Projects section */
   padding: 106px 0 102px; /* Spacing */
 } /* End projects */
@@ -470,6 +484,7 @@ body { /* Body styles */
 } /* End carousel */
 
 /* ===== PROJECTS (UPDATED REAL SLIDER) ===== */
+/* Meaning: Slider track/viewport/card styling for the looping centered carousel. */
 
 .carousel__viewport { /* Viewport (window) */
   overflow: hidden; /* Hides off-screen slides */
@@ -675,6 +690,8 @@ body { /* Body styles */
 } /* End active */
 
 /* ===== OFFER / SKILLS ===== */
+/* Meaning: "What I Offer" cards.
+  Behavior: cards can collapse/expand via the .is-open class toggled in JS. */
 .offer { /* Offer section */
   padding: 56px 0 42px; /* Spacing */
 } /* End offer */
@@ -694,9 +711,14 @@ body { /* Body styles */
   position: relative; /* For button */
   overflow: hidden; /* Clip */
   box-shadow: 0 20px 70px rgba(0, 0, 0, 0.45); /* Shadow */
-  min-height: 280px; /* Similar height to reference */
+  min-height: 160px; /* Collapsed height */
+  transition: min-height 420ms ease; /* Smooth expand/collapse */
   cursor: pointer; /* Indicates click to expand */
 } /* End offerCard */
+
+.offerCard.is-open { /* Expanded state height */
+  min-height: 280px; /* Similar height to reference */
+} /* End expanded */
 
 .offerCard__body { /* Collapsible offer content */
   overflow: hidden; /* Hides collapsed content */
@@ -711,6 +733,9 @@ body { /* Body styles */
 } /* End closed */
 
 @media (prefers-reduced-motion: reduce) { /* Reduce motion */
+  .offerCard { /* Card */
+    transition: none; /* No height animation */
+  } /* End card */
   .offerCard__body { /* Body */
     transition: none; /* No animation */
   } /* End body */
@@ -757,7 +782,7 @@ body { /* Body styles */
   font-size: 13px; /* Size */
 } /* End chip */
 
-.miniTop { /* Mini scroll top button */
+.miniTop { /* Offer card toggle button (collapse/expand) */
   position: absolute; /* Position inside card */
   right: 16px; /* Right */
   bottom: 16px; /* Bottom */
@@ -777,6 +802,8 @@ body { /* Body styles */
 } /* End hover */
 
 /* ===== CONTACT ===== */
+/* Meaning: Contact section layout + link/button styles.
+  JS adds optional "copy email" behavior; CSS only controls visuals. */
 .contact { /* Contact section */
   padding: 56px 0 30px; /* Spacing */
 } /* End contact */
@@ -832,6 +859,8 @@ body { /* Body styles */
 } /* End hover */
 
 /* ===== FOOTER ===== */
+/* Meaning: Footer bar (copyright + credit).
+  JS updates the year automatically. */
 .footer { /* Footer */
   padding: 26px 0 30px; /* Spacing */
   border-top: 1px solid rgba(255, 255, 255, 0.06); /* Border */
