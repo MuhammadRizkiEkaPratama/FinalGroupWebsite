@@ -2,11 +2,17 @@
 const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
+            // Element masuk viewport → tampil
             entry.target.style.opacity = '1';
             entry.target.style.transform = 'translateY(0)';
+        } else {
+            // Element keluar viewport → sembunyi lagi
+            entry.target.style.opacity = '0';
+            entry.target.style.transform = 'translateY(30px)';
         }
     });
 }, { threshold: 0.1 });
+
 
 // Terapkan ke kartu proyek dan item timeline
 document.querySelectorAll('.project-card, .timeline-item').forEach(el => {
