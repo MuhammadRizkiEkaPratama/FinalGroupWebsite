@@ -1,4 +1,3 @@
-/* --- RESET & SETUP --- */
 * {
   margin: 0;
   padding: 0;
@@ -13,7 +12,7 @@ body {
   overflow-x: hidden;
 }
 
-/* --- NAVBAR MODERN (GLASSMORPHISM) --- */
+/* --- NAVBAR  --- */
 nav {
   display: flex;
   justify-content: space-between;
@@ -229,10 +228,24 @@ h1 {
   box-shadow: 0 5px 15px rgba(0, 210, 255, 0.3);
 }
 
-@media (max-width: 900px) {
-  .social-links-about {
-    justify-content: center;
-  }
+.social-links {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.social-links a {
+  color: #94a3b8;
+  font-size: 1.8rem;
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+
+.social-links a:hover {
+  color: #00d2ff;
+  transform: translateY(-5px);
+  filter: drop-shadow(0 0 8px rgba(0, 210, 255, 0.6));
 }
 
 .timeline-item::before {
@@ -401,27 +414,6 @@ h1 {
   transform: translateX(5px);
 }
 
-/* --- SOCIAL LINKS --- */
-.social-links {
-  margin-top: 30px;
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-}
-
-.social-links a {
-  color: #94a3b8;
-  font-size: 1.8rem;
-  transition: all 0.3s ease;
-  display: inline-block;
-}
-
-.social-links a:hover {
-  color: #00d2ff;
-  transform: translateY(-5px);
-  filter: drop-shadow(0 0 8px rgba(0, 210, 255, 0.6));
-}
-
 /* --- FOOTER --- */
 footer {
   text-align: center;
@@ -454,7 +446,7 @@ footer p {
   margin-right: 10px;
 }
 
-/* --- ANIMASI --- */
+/* --- ANIMATION --- */
 @keyframes float {
   0%,
   100% {
@@ -475,7 +467,7 @@ footer p {
   }
   .hero {
     height: auto;
-    padding: 120px 10% 60px; /* top padding sama kayak desktop navbar */
+    padding: 120px 10% 60px;
   }
   .hero-content {
     display: flex;
@@ -497,6 +489,9 @@ footer p {
     height: auto;
   }
   .social-links {
+    justify-content: center;
+  }
+  .social-links-about {
     justify-content: center;
   }
   .subtitle {

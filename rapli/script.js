@@ -38,3 +38,15 @@ const navMenu = document.getElementById("nav-menu");
 hamburger.addEventListener("click", () =>{
     navMenu.classList.toggle("active");
 });
+
+const yearEl = document.getElementById("year"); // Footer year span
+function setYear() {
+  // Set footer year
+  yearEl.textContent = String(new Date().getFullYear()); // Insert current year text
+} // End setYear
+
+function init(){
+      setYear(); // Set footer year
+}
+
+init();
