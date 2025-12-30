@@ -2,11 +2,17 @@
 const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
+            // Element masuk viewport → tampil
             entry.target.style.opacity = '1';
             entry.target.style.transform = 'translateY(0)';
+        } else {
+            // Element keluar viewport → sembunyi lagi
+            entry.target.style.opacity = '0';
+            entry.target.style.transform = 'translateY(30px)';
         }
     });
 }, { threshold: 0.1 });
+
 
 // Terapkan ke kartu proyek dan item timeline
 document.querySelectorAll('.project-card, .timeline-item').forEach(el => {
@@ -32,3 +38,15 @@ const navMenu = document.getElementById("nav-menu");
 hamburger.addEventListener("click", () =>{
     navMenu.classList.toggle("active");
 });
+
+const yearEl = document.getElementById("year"); // Footer year span
+function setYear() {
+  // Set footer year
+  yearEl.textContent = String(new Date().getFullYear()); // Insert current year text
+} // End setYear
+
+function init(){
+      setYear(); // Set footer year
+}
+5
+init();
