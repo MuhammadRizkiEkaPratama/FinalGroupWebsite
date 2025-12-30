@@ -106,9 +106,9 @@ body { /* Body styles */
 } /* End .blob */
 
 .blob--left { /* Left blob */
-  left: -180px; /* Offset to left */
+  left: -80px; /* Offset to left */
   top: -120px; /* Offset to top */
-  background: radial-gradient(circle at 30% 30%, var(--c-green), transparent 60%); /* Green glow */
+  background: radial-gradient(circle at 30% 30%, var(--c-magenta), transparent 60%); /* Green glow */
 } /* End .blob--left */
 
 .blob--right { /* Right blob */
@@ -234,7 +234,7 @@ body { /* Body styles */
 } /* End nav__btn a */
 
 .nav__btn:hover { /* Button hover */
-  transform: translateY(-1px); /* Lift */
+  transform: translateY(-3px); /* Lift */
   box-shadow: 0 0 0 6px rgba(var(--accent-rgb), 0.12); /* Glow ring */
 } /* End hover */
 
@@ -356,7 +356,6 @@ body { /* Body styles */
   width: min(420px, 100%); /* Responsive width */
   margin: 0 auto; /* Center */
   border-radius: var(--radius2); /* Big rounding */
-  background: radial-gradient(circle at 50% 30%, rgba(var(--accent2-rgb), 0.18), rgba(255, 255, 255, 0.02)); /* Glow */
   border: 1px solid rgba(255, 255, 255, 0.08); /* Border */
   box-shadow: var(--shadow); /* Deep shadow */
   overflow: hidden; /* Crop image */
@@ -367,8 +366,6 @@ body { /* Body styles */
   content: ""; /* Creates pseudo element */
   position: absolute; /* Positioned */
   inset: -20px; /* Expand */
-  background: radial-gradient(circle at 50% 30%, rgba(var(--accent-rgb), 0.18), transparent 60%); /* Glow */
-  pointer-events: none; /* Not clickable */
 } /* End after */
 
 .portrait__img { /* Portrait image */
@@ -444,6 +441,7 @@ body { /* Body styles */
 
 .pill { /* Pill button style */
   display: inline-flex; /* Inline flex */
+  text-decoration: none;
   align-items: center; /* Center */
   gap: 10px; /* Gap */
   padding: 12px 18px; /* Padding */
@@ -492,6 +490,7 @@ body { /* Body styles */
   max-width: 1020px; /* Keeps it like reference (3 cards-ish) */
   margin: 0 auto; /* Centers viewport */
   padding: 8px 0; /* Small breathing room */
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.32); /* Subtle shadow */
 } /* End viewport */
 
 .carousel__inner { /* Moving track */
@@ -518,7 +517,6 @@ body { /* Body styles */
 } /* End hover */
 
 
-
 .projectCard { /* Project card */
   border-radius: var(--radius2); /* Rounded */
   background: radial-gradient(circle at 50% 0%, rgba(var(--accent-rgb), 0.14), rgba(255, 255, 255, 0.03) 55%, rgba(0, 0, 0, 0.26) 100%); /* Dark glass + accent */
@@ -530,7 +528,6 @@ body { /* Body styles */
   display: flex; /* Column layout */
   flex-direction: column; /* Stack */
   min-height: 460px; /* Match tall cards */
-
   flex: 0 0 420px; /* Fixed slide width (wider for 16:9) */
   opacity: 0.55; /* Dim inactive */
   transform: scale(0.96); /* Slightly smaller inactive */
@@ -549,7 +546,7 @@ body { /* Body styles */
   position: absolute; /* Position */
   inset: -40px; /* Expand */
   background: radial-gradient(circle at 20% 20%, rgba(var(--accent-rgb), 0.18), transparent 55%); /* Glow */
-  opacity: 0.8; /* Strength */
+  opacity: 0.6; /* Strength */
   pointer-events: none; /* Not clickable */
   z-index: 0; /* Behind content */
 } /* End before */
